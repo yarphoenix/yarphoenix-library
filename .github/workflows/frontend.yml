@@ -30,10 +30,14 @@ jobs:
       - run: npm ci
 
       - name: Prettier check
-        run: npx prettier --check "src/**/*.{js,jsx,scss,css}"
+        # Шаблон файлов живёт в package.json — один источник для CI и локального запуска.
+        run: npm run format:check
 
       - name: Lint
         run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
 
       - name: Unit tests
         run: npm test

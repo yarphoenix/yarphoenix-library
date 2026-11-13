@@ -1,5 +1,6 @@
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+// defineConfig из vitest/config знает и про секцию `test`, и про обычные опции Vite.
+import { defineConfig } from 'vitest/config';
 
 // base поднимается из env при деплое на GitHub Pages (subpath /<repo>/, ТЗ §11.3);
 // локально остаётся '/'.

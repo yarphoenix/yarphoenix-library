@@ -10,14 +10,18 @@
 
 ## Стек и команды
 
-React 19 + Vite 7, react-router-dom, Redux Toolkit / RTK Query, SCSS (BEM), lucide-react, epub.js.
+React 19 + Vite 7, TypeScript 5.9 (strict; идёт поэтапная миграция с JS, `allowJs`), react-router-dom,
+Redux Toolkit / RTK Query, SCSS (BEM), lucide-react, epub.js. TypeScript закреплён на ветке 5.x:
+`openapi-typescript` требует `^5`, `typescript-eslint` — `<6.1`; обновлять до 6/7 только вместе с ними.
 
 ```bash
 npm run dev          # дев-сервер на 3000; /api проксируется на бэкенд 127.0.0.1:5080
 npm run build        # прод-сборка в dist/
-npx prettier --check "src/**/*.{js,jsx,scss,css}"   # то же гоняет CI
+npm run format:check # Prettier по src (js/jsx/ts/tsx/scss/css); то же гоняет CI
 npm run lint         # ESLint (правила хуков React); CI падает на любой ошибке
+npm run typecheck    # tsc --noEmit; CI падает на любой ошибке типов
 npm test             # юнит-тесты (Vitest)
+npm run gen:api      # перегенерировать src/shared/api/schema.d.ts из OpenAPI бэкенда (он должен быть запущен)
 ```
 
 Бэкенд для локальной работы: `cd ../../RiderProjects/yarphoenix-library-api && docker compose up -d postgres minio && dotnet run --project src/YarPhoenix.Api` (порт 5080).
@@ -34,7 +38,7 @@ npm test             # юнит-тесты (Vitest)
 ```
 src/app/        store.js, роутер, layout (Header)
 src/features/   catalog, book, auth, library, reader, settings, assistant — по фиче, не по типу
-src/shared/     api/ (базовый query + reauth), i18n/ (strings.js RU+EN), ui/ (Button, Input, BookCover, Toast), ui-state/ (uiSlice: язык, тосты, модалка входа)
+src/shared/     api/ (базовый query + reauth, schema.d.ts из OpenAPI, types.ts), i18n/ (strings.ts RU+EN), ui/ (Button, Input, BookCover, Toast), ui-state/ (uiSlice: язык, тосты, модалка входа)
 src/styles/     дизайн-токены (CSS-переменные из дизайн-системы) + база
 ```
 
@@ -42,6 +46,10 @@ src/styles/     дизайн-токены (CSS-переменные из диз�
 
 - **Код-стайл и BEM**: `.Codex/rules/code-style.md` (обязателен; Prettier зеркалит `.prettierrc.json`,
   но структуру CSS и BEM он не чинит — писать правильно сразу).
+- **TypeScript**: новые и существенно переписываемые файлы — сразу `.ts/.tsx` (правила — в code-style.md §2.1).
+  DTO бэкенда руками не описывать: брать из `src/shared/api/types.ts` (алиасы над сгенерированным
+  `schema.d.ts`); после изменения контрактов бэкенда — `npm run gen:api` и закоммитить результат.
+  В `.ts/.tsx` — `useAppDispatch`/`useAppSelector` из `src/app/hooks.ts`.
 - **Состояние (ТЗ §6.1)**: серверные данные — только RTK Query (никаких ручных thunk-фетчей);
   клиентский UI-стейт — slices (`uiSlice`, `readerSlice`). Кэш RTK Query ключуется аргументом запроса.
 - **Каталог (перф-гайд)**: `page`/`q`/`genre` живут в URL (`useSearchParams`), не в useState;
@@ -51,7 +59,7 @@ src/styles/     дизайн-токены (CSS-переменные из диз�
 - **Два мира контента (ТЗ §1.1)**: каталог — метаданные/витрина; читалка и ассистент работают
   только при `hasReadableFile` (файл в MinIO). Кнопка «Читать» и панель ассистента не должны
   появляться у книг без файла. Не «улучшать» слиянием миров.
-- **i18n**: все строки — в `src/shared/i18n/strings.js` парой RU/EN; язык в localStorage
+- **i18n**: все строки — в `src/shared/i18n/strings.ts` парой RU/EN (парность ключей проверяет tsc); язык в localStorage
   (`yarphoenix.language`) и в профиле пользователя.
 - **Auth**: токены в localStorage `yarphoenix.auth`; refresh-ротация в базовом query
   (`src/shared/api`); 401 → одна попытка refresh → logout.
@@ -60,7 +68,7 @@ src/styles/     дизайн-токены (CSS-переменные из диз�
 
 ## Деплой (ТЗ §11)
 
-GitHub Pages через `.github/workflows/frontend.yml`: prettier-check → lint → тесты → build → deploy на push в main/master.
+GitHub Pages через `.github/workflows/frontend.yml`: prettier-check → lint → typecheck → тесты → build → deploy на push в main/master.
 `VITE_BASE=/yarphoenix-library/` и SPA-трюк `404.html` уже в пайплайне; `VITE_API_URL` берётся из
 repo variables (Settings → Variables → API_URL). Роутер берёт basename из `import.meta.env.BASE_URL`.
 
