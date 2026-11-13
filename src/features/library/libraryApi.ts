@@ -1,26 +1,46 @@
 import { baseApi } from '../../shared/api/baseApi';
+import type {
+  BookRef,
+  LibraryBook,
+  LibraryStats,
+  UpdateShelfRequest,
+} from '../../shared/api/types';
 
 const timeZoneId = Intl.DateTimeFormat().resolvedOptions().timeZone ?? 'UTC';
 
+// PATCH полки частичный: передаём только то, что меняем (статус и/или «избранное»).
+export type ShelfPatch = { bookId: string } & Partial<UpdateShelfRequest>;
+
+export type ProgressUpdate = {
+  bookId: string;
+  cfiPosition: string;
+  // Процент прочитанного, 0–100.
+  progress: number;
+};
+
 export const libraryApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getShelf: builder.query({
-      query: (shelf = 'all') => ({ url: 'library/books', params: { shelf } }),
+    // Без аргумента — вся библиотека ('all').
+    getShelf: builder.query<LibraryBook[], string | void>({
+      query: (shelf) => ({
+        url: 'library/books',
+        params: { shelf: typeof shelf === 'string' ? shelf : 'all' },
+      }),
       providesTags: ['Library'],
     }),
     // Состояние UserBook для страницы каталожной книги; 404 = не в библиотеке.
-    lookupBook: builder.query({
+    lookupBook: builder.query<LibraryBook, BookRef>({
       query: ({ provider, externalId }) => ({
         url: 'library/books/lookup',
         params: { provider, externalId },
       }),
       providesTags: ['Library'],
     }),
-    getLibraryBook: builder.query({
+    getLibraryBook: builder.query<LibraryBook, string>({
       query: (bookId) => `library/books/${bookId}`,
       providesTags: ['Library'],
     }),
-    uploadBook: builder.mutation({
+    uploadBook: builder.mutation<LibraryBook, File>({
       query: (file) => {
         const form = new FormData();
         form.append('file', file);
@@ -28,11 +48,11 @@ export const libraryApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ['Library', 'LibraryStats'],
     }),
-    getLibraryStats: builder.query({
+    getLibraryStats: builder.query<LibraryStats, void>({
       query: () => ({ url: 'library/stats', params: { timeZoneId } }),
       providesTags: ['LibraryStats'],
     }),
-    addToLibrary: builder.mutation({
+    addToLibrary: builder.mutation<LibraryBook, BookRef>({
       query: ({ provider, externalId }) => ({
         url: 'library/books',
         method: 'POST',
@@ -42,7 +62,7 @@ export const libraryApi = baseApi.injectEndpoints({
     }),
     // «Читать» для PD-книги: сервер докачивает файл с Internet Archive в MinIO
     // и переводит книгу в Reading (ленивый ингест, ТЗ §5.1.2). Возвращает bookId.
-    startReading: builder.mutation({
+    startReading: builder.mutation<LibraryBook, BookRef>({
       query: ({ provider, externalId }) => ({
         url: 'library/books/read',
         method: 'POST',
@@ -50,7 +70,7 @@ export const libraryApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['Library', 'LibraryStats'],
     }),
-    updateShelf: builder.mutation({
+    updateShelf: builder.mutation<LibraryBook, ShelfPatch>({
       query: ({ bookId, ...patch }) => ({
         url: `library/books/${bookId}`,
         method: 'PATCH',
@@ -58,11 +78,11 @@ export const libraryApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['Library', 'LibraryStats'],
     }),
-    removeFromLibrary: builder.mutation({
+    removeFromLibrary: builder.mutation<void, string>({
       query: (bookId) => ({ url: `library/books/${bookId}`, method: 'DELETE' }),
       invalidatesTags: ['Library', 'LibraryStats'],
     }),
-    updateProgress: builder.mutation({
+    updateProgress: builder.mutation<LibraryBook, ProgressUpdate>({
       query: ({ bookId, cfiPosition, progress }) => ({
         url: `library/books/${bookId}/progress`,
         method: 'PUT',
