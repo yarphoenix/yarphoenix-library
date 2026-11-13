@@ -16,6 +16,8 @@ React 19 + Vite 7, react-router-dom, Redux Toolkit / RTK Query, SCSS (BEM), luci
 npm run dev          # дев-сервер на 3000; /api проксируется на бэкенд 127.0.0.1:5080
 npm run build        # прод-сборка в dist/
 npx prettier --check "src/**/*.{js,jsx,scss,css}"   # то же гоняет CI
+npm run lint         # ESLint (правила хуков React); CI падает на любой ошибке
+npm test             # юнит-тесты (Vitest)
 ```
 
 Бэкенд для локальной работы: `cd ../../RiderProjects/yarphoenix-library-api && docker compose up -d postgres minio && dotnet run --project src/YarPhoenix.Api` (порт 5080).
@@ -58,7 +60,7 @@ src/styles/     дизайн-токены (CSS-переменные из диз�
 
 ## Деплой (ТЗ §11)
 
-GitHub Pages через `.github/workflows/frontend.yml`: prettier-check → build → deploy на push в main/master.
+GitHub Pages через `.github/workflows/frontend.yml`: prettier-check → lint → тесты → build → deploy на push в main/master.
 `VITE_BASE=/yarphoenix-library/` и SPA-трюк `404.html` уже в пайплайне; `VITE_API_URL` берётся из
 repo variables (Settings → Variables → API_URL). Роутер берёт basename из `import.meta.env.BASE_URL`.
 

@@ -38,9 +38,12 @@ export function CatalogPage() {
 
   const [searchInput, setSearchInput] = useState(q);
 
-  useEffect(() => {
+  // URL поменялся извне («назад», сброс фильтров) — подтягиваем поле к нему в том же рендере.
+  const [syncedQ, setSyncedQ] = useState(q);
+  if (q !== syncedQ) {
+    setSyncedQ(q);
     setSearchInput(q);
-  }, [q]);
+  }
 
   useEffect(() => {
     if (searchInput === q) {

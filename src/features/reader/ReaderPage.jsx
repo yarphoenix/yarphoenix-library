@@ -19,7 +19,8 @@ import './ReaderPage.scss';
 
 const PROGRESS_SAVE_DELAY_MS = 2000;
 
-const apiBase = import.meta.env.VITE_API_URL ?? '/api';
+// `||`, а не `??`: незаданная repo-переменная приходит в сборку пустой строкой.
+const apiBase = import.meta.env.VITE_API_URL || '/api';
 
 export function ReaderPage() {
   const { bookId } = useParams();
@@ -36,7 +37,6 @@ export function ReaderPage() {
   const renditionRef = useRef(null);
   const bookRef = useRef(null);
   const saveTimerRef = useRef(null);
-  const initialCfiRef = useRef(null);
   // Текущая позиция чтения — для CFI-обрезки контекста ассистента (ТЗ §7.2).
   const currentCfiRef = useRef(null);
 
@@ -49,12 +49,13 @@ export function ReaderPage() {
 
   // Сохраняем стартовый CFI один раз: rendition не должен пересоздаваться
   // при обновлении данных книги после первого сохранения прогресса.
-  if (book && initialCfiRef.current === null) {
-    initialCfiRef.current = { cfi: book.cfiPosition ?? undefined };
+  const [initialCfi, setInitialCfi] = useState(null);
+  if (book && initialCfi === null) {
+    setInitialCfi({ cfi: book.cfiPosition ?? undefined });
   }
 
   useEffect(() => {
-    if (!viewerRef.current || !accessToken || !initialCfiRef.current || bookRef.current) {
+    if (!viewerRef.current || !accessToken || !initialCfi || bookRef.current) {
       return undefined;
     }
 
@@ -104,7 +105,7 @@ export function ReaderPage() {
         // Стартуем с сохранённой позиции; при первом открытии — с первой линейной
         // секции с текстом, минуя навигационную страницу-ToC (у таких сканов она
         // часто пустая, иначе книга открывалась бы на пустой странице).
-        let startTarget = initialCfiRef.current.cfi;
+        let startTarget = initialCfi.cfi;
         if (!startTarget) {
           const navPath = epubBook.packaging?.navPath;
           const firstContent = epubBook.spine.spineItems.find(

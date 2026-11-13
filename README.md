@@ -77,6 +77,7 @@ npm run dev          # дев-сервер на :3000, /api проксирует
 npm run build        # прод-сборка в dist/
 npm test             # юнит-тесты (Vitest)
 npx prettier --check "src/**/*.{js,jsx,scss,css}"
+npm run lint         # ESLint (правила хуков React)
 ```
 
 Для авторизованных страниц нужен запущенный бэкенд (см. его README). Быстрый вход —
@@ -84,7 +85,7 @@ dev-пользователь `reader@example.com` / `password123`.
 
 ## Деплой
 
-GitHub Pages через `.github/workflows/frontend.yml`: prettier → тесты → build → deploy на
+GitHub Pages через `.github/workflows/frontend.yml`: prettier → lint → тесты → build → deploy на
 push в main/master. `VITE_BASE=/yarphoenix-library/` и SPA-трюк `404.html` — в пайплайне;
 `VITE_API_URL` берётся из repo variable `API_URL`. Пошагово — в
 [docs/DEPLOY.md бэкенда](https://github.com/yarphoenix/yarphoenix-library-api/blob/main/docs/DEPLOY.md).

@@ -13,10 +13,10 @@ const initial = { text: '', exiting: false, index: 0 };
 // пауза 1с, следующая. phrases — массив { text, fill }. enabled=false → пусто.
 export function useTypewriter(phrases, enabled) {
   const [state, setState] = useState(initial);
+  const active = enabled && phrases.length > 0;
 
   useEffect(() => {
-    if (!enabled || phrases.length === 0) {
-      setState(initial);
+    if (!active) {
       return undefined;
     }
 
@@ -57,9 +57,14 @@ export function useTypewriter(phrases, enabled) {
     return () => {
       cancelled = true;
       clearTimeout(timer);
+      // Следующий запуск (или выключение) начинает с чистого листа, без хвоста прошлой фразы.
+      setState(initial);
     };
-  }, [enabled, phrases]);
+  }, [active, phrases]);
 
   const phrase = phrases.length ? phrases[state.index % phrases.length] : null;
-  return { text: state.text, exiting: state.exiting, phrase };
+  // Выключен — наружу всегда пусто, даже если в состоянии ещё лежит недопечатанная фраза.
+  return active
+    ? { text: state.text, exiting: state.exiting, phrase }
+    : { text: '', exiting: false, phrase };
 }

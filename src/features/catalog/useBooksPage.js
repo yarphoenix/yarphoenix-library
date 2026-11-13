@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { useGetBooksQuery } from './catalogApi';
 
@@ -8,11 +8,11 @@ export function useBooksPage(args) {
   const result = useGetBooksQuery(args);
   const [previous, setPrevious] = useState(result.data);
 
-  useEffect(() => {
-    if (result.data !== undefined) {
-      setPrevious(result.data);
-    }
-  }, [result.data]);
+  // Запоминаем свежий результат прямо в рендере (а не эффектом): без лишнего прохода
+  // рендера с устаревшим `previous`.
+  if (result.data !== undefined && result.data !== previous) {
+    setPrevious(result.data);
+  }
 
   return { ...result, data: result.data ?? previous };
 }

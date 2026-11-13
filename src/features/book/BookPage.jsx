@@ -119,7 +119,7 @@ export function BookPage() {
 
   return (
     <div className="book-page">
-      <button type="button" className="book-page__back" onClick={() => navigate("/")}>
+      <button type="button" className="book-page__back" onClick={() => navigate('/')}>
         <svg
           width="16"
           height="16"

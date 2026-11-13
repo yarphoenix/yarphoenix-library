@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 // base поднимается из env при деплое на GitHub Pages (subpath /<repo>/, ТЗ §11.3);
 // локально остаётся '/'.
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   base: process.env.VITE_BASE ?? '/',
   plugins: [react()],
   test: {

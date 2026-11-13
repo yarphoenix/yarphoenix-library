@@ -16,28 +16,26 @@ export function ConfirmEmailChangePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [confirmEmailChange] = useConfirmEmailChangeMutation();
-  const [status, setStatus] = useState('pending');
   const started = useRef(false);
 
   const userId = params.get('userId');
   const token = params.get('token');
   const email = params.get('email');
+  // Битая ссылка — ошибка известна сразу, без запроса и без промежуточного «подождите».
+  const hasParams = Boolean(userId && token && email);
+  const [status, setStatus] = useState(hasParams ? 'pending' : 'error');
 
   useEffect(() => {
-    if (started.current) {
+    if (!hasParams || started.current) {
       return;
     }
     started.current = true;
 
-    if (!userId || !token || !email) {
-      setStatus('error');
-      return;
-    }
     confirmEmailChange({ userId, token, newEmail: email })
       .unwrap()
       .then(() => setStatus('success'))
       .catch(() => setStatus('error'));
-  }, [confirmEmailChange, userId, token, email]);
+  }, [confirmEmailChange, hasParams, userId, token, email]);
 
   const openLogin = () => {
     navigate('/');
