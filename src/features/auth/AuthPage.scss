@@ -1,0 +1,48 @@
+.auth-page {
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 64px clamp(16px, 4vw, 32px) 80px;
+  text-align: center;
+
+  &__card {
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xs);
+    padding: var(--space-8);
+  }
+
+  &__title {
+    font-family: var(--font-serif-display);
+    font-size: var(--text-display-sm);
+    font-weight: var(--weight-regular);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-3);
+  }
+
+  &__message {
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-5);
+  }
+
+  &__message--error {
+    color: var(--color-error);
+  }
+
+  &__message--success {
+    color: var(--color-success);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    text-align: left;
+    margin-bottom: var(--space-5);
+  }
+
+  &__action {
+    width: 100%;
+  }
+}

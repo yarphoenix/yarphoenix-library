@@ -1,0 +1,13 @@
+import { baseApi } from '../../shared/api/baseApi';
+
+export const assistantApi = baseApi.injectEndpoints({
+  endpoints: (builder) => ({
+    // Бэкенд всегда отвечает 200: при недоступности Claude приходит
+    // { available: false, message } — деградация без ошибки (ТЗ §8.3).
+    askAssistant: builder.mutation({
+      query: (payload) => ({ url: 'assistant/ask', method: 'POST', body: payload }),
+    }),
+  }),
+});
+
+export const { useAskAssistantMutation } = assistantApi;

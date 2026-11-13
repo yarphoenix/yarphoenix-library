@@ -1,0 +1,64 @@
+# Фронтенд-пайплайн (ТЗ §11.5): проверка стиля + сборка на каждый push/PR,
+# деплой на GitHub Pages — только с основной ветки.
+name: frontend
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Prettier check
+        run: npx prettier --check "src/**/*.{js,jsx,scss,css}"
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Build
+        env:
+          # Сабпат gh-pages (§11.3): base бандлера = имя репозитория.
+          VITE_BASE: /yarphoenix-library/
+          # URL бэкенда зашивается в статическую сборку; задаётся в Settings → Variables.
+          VITE_API_URL: ${{ vars.API_URL }}
+        run: npm run build
+
+      - name: SPA fallback for GitHub Pages
+        # У Pages нет SPA-фолбэка: 404.html-копия index.html чинит deep-links (§11.3).
+        run: cp dist/index.html dist/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'push'
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

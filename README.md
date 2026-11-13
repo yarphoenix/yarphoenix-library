@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# YarPhoenix Library — фронтенд
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Веб-сервис для чтения книг: каталог, личная библиотека, читалка EPUB и AI-ассистент.
+Это **фронтенд** (React + Vite). Бэкенд (ASP.NET Core, модульный монолит) — в
+[отдельном репозитории](https://github.com/yarphoenix/yarphoenix-library-api).
 
-## Available Scripts
+> Портфолио-проект. Цель — показать инженерную зрелость: осознанно простая архитектура,
+> честная работа с внешними данными и с юридической чистотой (два «мира» контента, см. ниже),
+> а не набор баззвордов.
 
-In the project directory, you can run:
+## Скриншоты
 
-### `npm start`
+| Каталог | Страница книги | Читалка + ассистент |
+|---|---|---|
+| ![Каталог](docs/screenshots/catalog.png) | ![Книга](docs/screenshots/book.png) | ![Читалка](docs/screenshots/reader.png) |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| Библиотека | Настройки | Тёмная тема |
+|---|---|---|
+| ![Библиотека](docs/screenshots/library.png) | ![Настройки](docs/screenshots/settings.png) | ![Тёмная тема](docs/screenshots/catalog-dark.png) |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Стек
 
-### `npm test`
+- **React 19 + Vite 7**, react-router-dom.
+- **Redux Toolkit / RTK Query** — серверные данные через RTK Query, клиентский UI-стейт в slices.
+- **SCSS (BEM)**, дизайн-токены в CSS-переменных, light/dark темы.
+- **epub.js** — рендер EPUB в собственной читалке.
+- **lucide-react** — иконки (эмодзи запрещены дизайн-системой).
+- **Vitest + Testing Library** — юнит-тесты.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Два мира контента
 
-### `npm run build`
+Ключевой инвариант домена: приложение работает с **двумя типами контента**, которые почти
+не пересекаются.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Мир A — Каталог.** Метаданные из Open Library (обложки, описания, поиск). Только витрина
+  и вишлист, без текста.
+- **Мир B — Личная библиотека.** Полный текст: PD-книги с Internet Archive или загруженные
+  пользователем EPUB. Только здесь работают читалка, прогресс, стрик и AI-ассистент.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Читалку и ассистента разблокирует **не полка, а наличие файла** (`hasReadableFile`). PD-книгу
+из каталога можно «Читать» — бэкенд по клику докачивает EPUB с Internet Archive в хранилище
+(«золотой случай»: одна запись получает и метаданные, и файл).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## AI-ассистент без спойлеров
 
-### `npm run eject`
+Ассистент отвечает на вопросы по ходу чтения (значение слова, перевод, «объясни»,
+«кто эти персонажи»). Анти-спойлер — **на уровне данных**: сервер обрезает контекст по
+текущей позиции чтения (CFI), модель физически не видит непрочитанного. Клиент лишь шлёт
+CFI и выделение; сам контекст собирает сервер.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Структура (feature-sliced)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+src/app/        store, роутер, layout (Header, тема)
+src/features/   catalog, book, auth, library, reader, settings, assistant — по фиче
+src/shared/     api/ (базовый query + reauth), i18n/ (RU+EN), ui/ (Button, Input, …), ui-state/ (uiSlice)
+src/styles/     дизайн-токены (CSS-переменные) + база
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Производительность каталога
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Пагинация без «мигания» страницы: `page`/`q`/`genre` живут в URL (`useSearchParams`);
+RTK Query кэширует каждую страницу; `useBooksPage` удерживает предыдущие данные при загрузке
+(грид димится классом `--loading`, а не размонтируется); карточки в `memo` с key по id;
+обложки Open Library размера `M` с `loading="lazy"` и плейсхолдером.
 
-## Learn More
+## i18n
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Все строки — пары RU/EN в `src/shared/i18n/strings.js`. Язык хранится в localStorage
+и в профиле пользователя. Тема (light/dark) — там же, по умолчанию из `prefers-color-scheme`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Локальный запуск
 
-### Code Splitting
+```bash
+npm install
+npm run dev          # дев-сервер на :3000, /api проксируется на бэкенд 127.0.0.1:5080
+npm run build        # прод-сборка в dist/
+npm test             # юнит-тесты (Vitest)
+npx prettier --check "src/**/*.{js,jsx,scss,css}"
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Для авторизованных страниц нужен запущенный бэкенд (см. его README). Быстрый вход —
+dev-пользователь `reader@example.com` / `password123`.
 
-### Analyzing the Bundle Size
+## Деплой
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+GitHub Pages через `.github/workflows/frontend.yml`: prettier → тесты → build → deploy на
+push в main/master. `VITE_BASE=/yarphoenix-library/` и SPA-трюк `404.html` — в пайплайне;
+`VITE_API_URL` берётся из repo variable `API_URL`. Пошагово — в
+[docs/DEPLOY.md бэкенда](https://github.com/yarphoenix/yarphoenix-library-api/blob/main/docs/DEPLOY.md).
