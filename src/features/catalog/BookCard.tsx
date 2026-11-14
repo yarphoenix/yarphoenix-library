@@ -1,25 +1,29 @@
 import { Plus } from 'lucide-react';
-import { memo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { memo, type MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 
-import { selectUser } from '../auth/authSlice';
-import { useAddToLibraryMutation } from '../library/libraryApi';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { apiErrorMessage } from '../../shared/api/errors';
+import type { BookSummary } from '../../shared/api/types';
 import { useStrings } from '../../shared/i18n/useStrings';
 import { BookCover } from '../../shared/ui/BookCover/BookCover';
 import { loginModalOpened, toastShown } from '../../shared/ui-state/uiSlice';
+import { selectUser } from '../auth/authSlice';
+import { useAddToLibraryMutation } from '../library/libraryApi';
 import { coverUrl } from './coverUrl';
 import './BookCard.scss';
 
+type BookCardProps = { book: BookSummary };
+
 // memo + стабильный key={externalId} у родителя: карточки не перерисовываются,
 // когда меняется только состояние загрузки/наведения вокруг них.
-export const BookCard = memo(function BookCard({ book }) {
+export const BookCard = memo(function BookCard({ book }: BookCardProps) {
   const { t } = useStrings();
-  const user = useSelector(selectUser);
-  const dispatch = useDispatch();
+  const user = useAppSelector(selectUser);
+  const dispatch = useAppDispatch();
   const [addToLibrary, { isLoading }] = useAddToLibraryMutation();
 
-  const quickAdd = async (event) => {
+  const quickAdd = async (event: MouseEvent<HTMLButtonElement>) => {
     // Кнопка живёт внутри Link — не даём клику провалиться в навигацию.
     event.preventDefault();
     event.stopPropagation();
@@ -33,8 +37,8 @@ export const BookCard = memo(function BookCard({ book }) {
     try {
       await addToLibrary({ provider: book.provider, externalId: book.externalId }).unwrap();
       dispatch(toastShown(t.toastWant));
-    } catch (err) {
-      dispatch(toastShown(err?.data?.message ?? t.catalogError));
+    } catch (failure) {
+      dispatch(toastShown(apiErrorMessage(failure) ?? t.actionError));
     }
   };
 
@@ -51,6 +55,7 @@ export const BookCard = memo(function BookCard({ book }) {
           type="button"
           className="book-card__add"
           title={t.addToLibrary}
+          aria-label={t.addToLibrary}
           disabled={isLoading}
           onClick={quickAdd}
         >
