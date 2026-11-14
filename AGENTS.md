@@ -36,7 +36,7 @@ npm run gen:api      # перегенерировать src/shared/api/schema.d.
 ## Структура (feature-sliced, ТЗ §6)
 
 ```
-src/app/        store.js, роутер, layout (Header)
+src/app/        store.ts, hooks.ts, роутер (App.jsx), layout/ (Layout — с шапкой; BareLayout — полноэкранный, для читалки)
 src/features/   catalog, book, auth, library, reader, settings, assistant — по фиче, не по типу
 src/shared/     api/ (базовый query + reauth, schema.d.ts из OpenAPI, types.ts), i18n/ (strings.ts RU+EN), ui/ (Button, Input, BookCover, Toast), ui-state/ (uiSlice: язык, тосты, модалка входа)
 src/styles/     дизайн-токены (CSS-переменные из дизайн-системы) + база
@@ -61,8 +61,19 @@ src/styles/     дизайн-токены (CSS-переменные из диз�
   появляться у книг без файла. Не «улучшать» слиянием миров.
 - **i18n**: все строки — в `src/shared/i18n/strings.ts` парой RU/EN (парность ключей проверяет tsc); язык в localStorage
   (`yarphoenix.language`) и в профиле пользователя.
-- **Auth**: токены в localStorage `yarphoenix.auth`; refresh-ротация в базовом query
-  (`src/shared/api`); 401 → одна попытка refresh → logout.
+- **Auth**: токены в localStorage `yarphoenix.auth`; refresh-ротация — в `src/shared/api/session.ts`:
+  один refresh на все параллельные 401 и на все вкладки (`navigator.locks` + перечитывание сессии
+  из localStorage). 401 → одна попытка refresh → повтор запроса; logout — только если сервер отверг
+  refresh-токен (сбой сети или 5xx сессию не рвут). Запросы мимо RTK Query (файл книги) — через
+  `fetchWithAuth`, не голым `fetch`.
+- **Читалка**: жизненный цикл epub.js — в `features/reader/useEpubReader.ts`. Эффект открытия книги
+  не должен зависеть от токена, настроек и записи книги в кэше — иначе книга пересоздаётся и позиция
+  откатывается. Оформление текста — только через `epubStyles.ts` (хук `rendition.hooks.content`),
+  не через `rendition.themes`. Закрытие книги — через `closeBook` (голый `book.destroy()` может
+  бросить исключение и уронить приложение).
+- **Данные на страницах одной сущности** (книга, читалка): брать `currentData`, а не `data`, и
+  считать загрузкой `isFetching` без данных — иначе при смене книги видна прошлая, а после ошибки
+  не показывается скелетон.
 - **Дизайн**: только токены (`var(--...)`), без сырых hex; иконки — lucide-react (эмодзи запрещены
   дизайн-системой); serif (Libre Baskerville) для заголовков, sans (Libre Franklin) для UI.
 
@@ -77,3 +88,6 @@ repo variables (Settings → Variables → API_URL). Роутер берёт bas
 Превью-сервер настроен в `.Codex/launch.json` (имя `frontend`). Быстрый вход для проверки
 авторизованных страниц: POST `/api/auth/login` с `reader@example.com` / `password123` (dev-юзер),
 положить ответ в localStorage `yarphoenix.auth` и перезагрузить страницу.
+
+Читалку проверять при **видимой** панели браузера: epub.js работает через `requestAnimationFrame`,
+в скрытой панели кадров нет и книга «вечно готовится» — это не баг приложения.
