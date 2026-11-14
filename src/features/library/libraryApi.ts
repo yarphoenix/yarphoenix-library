@@ -87,6 +87,8 @@ export const libraryApi = baseApi.injectEndpoints({
         url: `library/books/${bookId}/progress`,
         method: 'PUT',
         body: { cfiPosition, progress, timeZoneId },
+        // Позиция сохраняется и при закрытии вкладки — запрос должен пережить страницу.
+        keepalive: true,
       }),
       invalidatesTags: ['Library', 'LibraryStats'],
     }),

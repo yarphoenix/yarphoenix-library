@@ -8,6 +8,7 @@ import { CatalogPage } from '../features/catalog/CatalogPage';
 import { LibraryPage } from '../features/library/LibraryPage';
 import { ReaderPage } from '../features/reader/ReaderPage';
 import { SettingsPage } from '../features/settings/SettingsPage';
+import { BareLayout } from './layout/BareLayout';
 import { Layout } from './layout/Layout';
 
 export function App() {
@@ -22,8 +23,10 @@ export function App() {
         <Route path="confirm-email-change" element={<ConfirmEmailChangePage />} />
         <Route path="reset-password" element={<ResetPasswordPage />} />
       </Route>
-      {/* Читалка — полноэкранная, без общего Layout. */}
-      <Route path="reader/:bookId" element={<ReaderPage />} />
+      {/* Читалка — полноэкранная: без шапки, но с модалкой входа и тостами. */}
+      <Route element={<BareLayout />}>
+        <Route path="reader/:bookId" element={<ReaderPage />} />
+      </Route>
     </Routes>
   );
 }

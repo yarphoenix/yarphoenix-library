@@ -1,9 +1,24 @@
+@keyframes reader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .reader {
   position: fixed;
   inset: 0;
   z-index: 60;
   display: flex;
   flex-direction: column;
+
+  // Экран без книги: загрузка записи, гость, «не найдено», ошибка.
+  &--notice {
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6);
+    background: var(--surface-page);
+    color: var(--text-secondary);
+  }
 
   &__bar {
     flex: none;
@@ -142,6 +157,7 @@
   }
 
   &__stage {
+    position: relative;
     flex: 1;
     min-height: 0;
     display: flex;
@@ -170,12 +186,63 @@
     &:hover {
       color: var(--text-secondary);
     }
+
+    &:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
   }
 
-  &__error {
-    padding: 80px 20px;
+  // Индикатор поверх области текста, пока книга загружается и раскладывается.
+  // Цвет наследуется от темы читалки: на тёмной теме текст должен остаться читаемым.
+  &__status {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: inherit;
+    opacity: 0.75;
+    pointer-events: none;
+  }
+
+  &__spinner {
+    animation: reader-spin 0.9s linear infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  &__notice {
+    max-width: 440px;
     text-align: center;
+  }
+
+  &__notice-title {
+    font-family: var(--font-serif-display);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-regular);
+    color: var(--text-primary);
+    line-height: var(--leading-tight);
+    margin: 0 0 var(--space-3);
+  }
+
+  &__notice-text {
     font-size: var(--text-lg);
-    color: var(--color-error);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  &__notice-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-6);
   }
 }
