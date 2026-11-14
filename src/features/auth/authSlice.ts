@@ -1,8 +1,15 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import type { TokenPair, User } from '../../shared/api/types';
+import type { User } from '../../shared/api/types';
 
 const STORAGE_KEY = 'yarphoenix.auth';
+
+// Действующая сессия: пара токенов и профиль. Ответ бэкенда (TokenPair) ей соответствует.
+export type Session = {
+  accessToken: string;
+  refreshToken: string;
+  user: User;
+};
 
 export type AuthState = {
   accessToken: string | null;
@@ -15,7 +22,9 @@ type WithAuth = { auth: AuthState };
 
 const empty: AuthState = { accessToken: null, refreshToken: null, user: null };
 
-const loadSession = (): AuthState | null => {
+// Сессия из localStorage. Нужна не только при старте: по ней видно, что пару токенов
+// уже обновила другая вкладка (см. shared/api/session.ts).
+export const readStoredSession = (): Session | null => {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) {
@@ -47,9 +56,9 @@ const persist = (state: AuthState) => {
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: (): AuthState => loadSession() ?? empty,
+  initialState: (): AuthState => readStoredSession() ?? empty,
   reducers: {
-    sessionStarted(state, action: PayloadAction<TokenPair>) {
+    sessionStarted(state, action: PayloadAction<Session>) {
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
       state.user = action.payload.user;
