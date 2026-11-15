@@ -216,10 +216,10 @@
     "semantic_hash": "6a23df5cebb9da68cb1fdc5cc8f53540"
   },
   "src/features/reader/epubStyles.ts": {
-    "mtime": 1794618218.887911,
-    "seen": 1794658923.6580236,
-    "ast_hash": "2f4a4820acc0f211efde88829b6107cb",
-    "semantic_hash": "2f4a4820acc0f211efde88829b6107cb"
+    "mtime": 1794693799.3613458,
+    "seen": 1794693906.6554153,
+    "ast_hash": "a067d9ef05097f3a446f5a2874d9a7fb",
+    "semantic_hash": ""
   },
   "src/features/reader/readerSlice.ts": {
     "mtime": 1794584163.4221182,
@@ -276,10 +276,10 @@
     "semantic_hash": "9ba653acd62e593c2902604b601992c6"
   },
   "src/shared/api/schema.d.ts": {
-    "mtime": 1794599919.1692731,
-    "seen": 1794658923.6580236,
-    "ast_hash": "caddd06312015366468526c6c7e0b148",
-    "semantic_hash": "caddd06312015366468526c6c7e0b148"
+    "mtime": 1794693403.2587323,
+    "seen": 1794693906.6554153,
+    "ast_hash": "91451d9e0b1e5de06b45b92e81d12440",
+    "semantic_hash": ""
   },
   "src/shared/api/session.ts": {
     "mtime": 1794618004.2697642,
@@ -358,5 +358,83 @@
     "seen": 1794658923.6580236,
     "ast_hash": "3c74ccaa8faacffbaa44f3b715131b20",
     "semantic_hash": "3c74ccaa8faacffbaa44f3b715131b20"
+  },
+  ".claude/settings.json": {
+    "mtime": 1794659429.6015148,
+    "seen": 1794693906.6554153,
+    "ast_hash": "3923b1162bd2a2bb62bc7e2b26b97909",
+    "semantic_hash": ""
+  },
+  "src/features/reader/epubStyles.test.ts": {
+    "mtime": 1794693826.9234722,
+    "seen": 1794693906.6554153,
+    "ast_hash": "a5cf91b7237e3acdef8a65b222dfe5b2",
+    "semantic_hash": ""
+  },
+  ".claude/rules/code-style.md": {
+    "mtime": 1794584386.2519202,
+    "seen": 1794693906.6554153,
+    "ast_hash": "bfabde7fa2963839d0d3924d8ee4b3a9",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1794693398.5885055,
+    "seen": 1794693906.6554153,
+    "ast_hash": "9d4996b69d155c85a3283fb179d6de47",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1794693374.6521695,
+    "seen": 1794693906.6554153,
+    "ast_hash": "2124ad28cfff7460a5c54c19ccad0e1c",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1794693342.1740944,
+    "seen": 1794693906.6554153,
+    "ast_hash": "f87f66bb43a5efcaf0003f85c3523bc6",
+    "semantic_hash": ""
+  },
+  "docs/screenshots/README.md": {
+    "mtime": 1783551052.2846706,
+    "seen": 1794693906.6554153,
+    "ast_hash": "cdca119cabcc6a7b654ab37b13e862a9",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1783379953.2491133,
+    "seen": 1794693906.6554153,
+    "ast_hash": "1a63366b6a9032242bf84ea9442d7ff9",
+    "semantic_hash": ""
+  },
+  "public/robots.txt": {
+    "mtime": 1783256335.8974025,
+    "seen": 1794693906.6554153,
+    "ast_hash": "fa1ded1ed7c11438a9b0385b1e112850",
+    "semantic_hash": ""
+  },
+  "public/favicon.svg": {
+    "mtime": 1783380226.0968506,
+    "seen": 1794693906.6554153,
+    "ast_hash": "27c7ac0ebdde6c95af5cb5aa71f43982",
+    "semantic_hash": ""
+  },
+  "src/shared/assets/hero-library.jpg": {
+    "mtime": 1783379968.6543238,
+    "seen": 1794693906.6554153,
+    "ast_hash": "1ee20cafe8ad68c05b41fdc54baca2ad",
+    "semantic_hash": ""
+  },
+  "src/shared/assets/yarphoenix-logo.svg": {
+    "mtime": 1783380154.1333356,
+    "seen": 1794693906.6554153,
+    "ast_hash": "1f4e4ce1c40f2c0d8918c0b04251f514",
+    "semantic_hash": ""
+  },
+  "package-lock.json": {
+    "mtime": 1794583815.7089655,
+    "seen": 1794693906.6554153,
+    "ast_hash": "559e67cce2d15e92f0f285e4082cbadd",
+    "semantic_hash": ""
   }
 }

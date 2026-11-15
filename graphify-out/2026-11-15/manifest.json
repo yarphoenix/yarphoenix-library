@@ -1,0 +1,362 @@
+{
+  ".claude/launch.json": {
+    "mtime": 1783381690.8915892,
+    "seen": 1794658923.6580236,
+    "ast_hash": "640d08c96dc83f08cb4814f073959c52",
+    "semantic_hash": "640d08c96dc83f08cb4814f073959c52"
+  },
+  ".github/workflows/frontend.yml": {
+    "mtime": 1794584371.0810003,
+    "seen": 1794658923.6580236,
+    "ast_hash": "2d1343ddbd377621101155c59c50bfe1",
+    "semantic_hash": "2d1343ddbd377621101155c59c50bfe1"
+  },
+  ".prettierrc.json": {
+    "mtime": 1783257417.4181836,
+    "seen": 1794658923.6580236,
+    "ast_hash": "96005f66d6dd5731975c56dac44299e7",
+    "semantic_hash": "96005f66d6dd5731975c56dac44299e7"
+  },
+  "eslint.config.js": {
+    "mtime": 1794600201.578,
+    "seen": 1794658923.6580236,
+    "ast_hash": "8423704909af4dd377a77829437b0eda",
+    "semantic_hash": "8423704909af4dd377a77829437b0eda"
+  },
+  "package.json": {
+    "mtime": 1794583887.7034287,
+    "seen": 1794658923.6580236,
+    "ast_hash": "844171eac407fb75b2993cf7bddbd7cf",
+    "semantic_hash": "844171eac407fb75b2993cf7bddbd7cf"
+  },
+  "src/app/App.jsx": {
+    "mtime": 1794618319.635031,
+    "seen": 1794658923.6580236,
+    "ast_hash": "dc263f6f6f09fa16c9c0662230d2a9b7",
+    "semantic_hash": "dc263f6f6f09fa16c9c0662230d2a9b7"
+  },
+  "src/app/hooks.ts": {
+    "mtime": 1794584122.101516,
+    "seen": 1794658923.6580236,
+    "ast_hash": "b0fa04c84c13db4cd112da71b90b1b28",
+    "semantic_hash": "b0fa04c84c13db4cd112da71b90b1b28"
+  },
+  "src/app/layout/BareLayout.tsx": {
+    "mtime": 1794618213.879281,
+    "seen": 1794658923.6580236,
+    "ast_hash": "06a9211537a0ee2cfd82e5cf9da08cd4",
+    "semantic_hash": "06a9211537a0ee2cfd82e5cf9da08cd4"
+  },
+  "src/app/layout/Header.jsx": {
+    "mtime": 1783553156.3742237,
+    "seen": 1794658923.6580236,
+    "ast_hash": "bcdc3dd2fae3553f4b97ba5e71fc41d4",
+    "semantic_hash": "bcdc3dd2fae3553f4b97ba5e71fc41d4"
+  },
+  "src/app/layout/Layout.tsx": {
+    "mtime": 1794618216.251097,
+    "seen": 1794658923.6580236,
+    "ast_hash": "9bc2840376a428e5c71f53bb1ec4ea06",
+    "semantic_hash": "9bc2840376a428e5c71f53bb1ec4ea06"
+  },
+  "src/app/layout/useDocumentTheme.ts": {
+    "mtime": 1794618211.7746677,
+    "seen": 1794658923.6580236,
+    "ast_hash": "dd88a2a714bb8d54122242d9f97f1ca1",
+    "semantic_hash": "dd88a2a714bb8d54122242d9f97f1ca1"
+  },
+  "src/app/store.ts": {
+    "mtime": 1794584165.466765,
+    "seen": 1794658923.6580236,
+    "ast_hash": "b5d74a1ac77cf837acfbcd02b93b85c1",
+    "semantic_hash": "b5d74a1ac77cf837acfbcd02b93b85c1"
+  },
+  "src/features/assistant/AssistantPanel.jsx": {
+    "mtime": 1783549712.140863,
+    "seen": 1794658923.6580236,
+    "ast_hash": "144431c7ce19a4a95ea11941ec8634fa",
+    "semantic_hash": "144431c7ce19a4a95ea11941ec8634fa"
+  },
+  "src/features/assistant/assistantApi.ts": {
+    "mtime": 1794584248.4899225,
+    "seen": 1794658923.6580236,
+    "ast_hash": "920e3d8bfc8d922bb543f8b1b1f7296a",
+    "semantic_hash": "920e3d8bfc8d922bb543f8b1b1f7296a"
+  },
+  "src/features/auth/ConfirmEmailChangePage.jsx": {
+    "mtime": 1794579493.3935282,
+    "seen": 1794658923.6580236,
+    "ast_hash": "8b970737e4daa7bd7e1aef91f84e26ac",
+    "semantic_hash": "8b970737e4daa7bd7e1aef91f84e26ac"
+  },
+  "src/features/auth/ConfirmEmailPage.jsx": {
+    "mtime": 1794579490.099277,
+    "seen": 1794658923.6580236,
+    "ast_hash": "a1b735f9de09c203cb3adeac27f3c354",
+    "semantic_hash": "a1b735f9de09c203cb3adeac27f3c354"
+  },
+  "src/features/auth/LoginModal.jsx": {
+    "mtime": 1783523749.2115152,
+    "seen": 1794658923.6580236,
+    "ast_hash": "a472dba04409f2a6c2459fbce4ac9d82",
+    "semantic_hash": "a472dba04409f2a6c2459fbce4ac9d82"
+  },
+  "src/features/auth/ResetPasswordPage.jsx": {
+    "mtime": 1783523809.261803,
+    "seen": 1794658923.6580236,
+    "ast_hash": "c1bb9e68613e2546dab33c1bad4aa7a4",
+    "semantic_hash": "c1bb9e68613e2546dab33c1bad4aa7a4"
+  },
+  "src/features/auth/authApi.ts": {
+    "mtime": 1794584246.4020014,
+    "seen": 1794658923.6580236,
+    "ast_hash": "02e5845e90062cf5886b7afa032ed4b8",
+    "semantic_hash": "02e5845e90062cf5886b7afa032ed4b8"
+  },
+  "src/features/auth/authSlice.ts": {
+    "mtime": 1794617892.3984838,
+    "seen": 1794658923.6580236,
+    "ast_hash": "472a76215abce7cb60eef19fc484af9e",
+    "semantic_hash": "472a76215abce7cb60eef19fc484af9e"
+  },
+  "src/features/book/BookPage.tsx": {
+    "mtime": 1794657668.4947395,
+    "seen": 1794658923.6580236,
+    "ast_hash": "d66c781043b39a6fc0a099254393a7d2",
+    "semantic_hash": "d66c781043b39a6fc0a099254393a7d2"
+  },
+  "src/features/catalog/BookCard.tsx": {
+    "mtime": 1794656923.681565,
+    "seen": 1794658923.6580236,
+    "ast_hash": "826720569ed9bdd5b262d69ea808f5de",
+    "semantic_hash": "826720569ed9bdd5b262d69ea808f5de"
+  },
+  "src/features/catalog/CatalogPage.jsx": {
+    "mtime": 1794579499.8851042,
+    "seen": 1794658923.6580236,
+    "ast_hash": "33e1b9f6649c2a83a97b2bef3a372517",
+    "semantic_hash": "33e1b9f6649c2a83a97b2bef3a372517"
+  },
+  "src/features/catalog/Pagination.jsx": {
+    "mtime": 1783380401.2427323,
+    "seen": 1794658923.6580236,
+    "ast_hash": "e1b48d2c388bc34f597b5e24ad328184",
+    "semantic_hash": "e1b48d2c388bc34f597b5e24ad328184"
+  },
+  "src/features/catalog/catalogApi.ts": {
+    "mtime": 1794584242.6519663,
+    "seen": 1794658923.6580236,
+    "ast_hash": "9eb657ed941db11d67100ee2e04a6e58",
+    "semantic_hash": "9eb657ed941db11d67100ee2e04a6e58"
+  },
+  "src/features/catalog/coverUrl.js": {
+    "mtime": 1783380296.3089905,
+    "seen": 1794658923.6580236,
+    "ast_hash": "96450fff1822194361dcf3e390662e02",
+    "semantic_hash": "96450fff1822194361dcf3e390662e02"
+  },
+  "src/features/catalog/genres.js": {
+    "mtime": 1783380301.014541,
+    "seen": 1794658923.6580236,
+    "ast_hash": "03faae09e45ef4d0378d2ea7d246a7c3",
+    "semantic_hash": "03faae09e45ef4d0378d2ea7d246a7c3"
+  },
+  "src/features/catalog/useBooksPage.test.jsx": {
+    "mtime": 1783550466.609141,
+    "seen": 1794658923.6580236,
+    "ast_hash": "7a592560eb3ed0926902e0c6d1037655",
+    "semantic_hash": "7a592560eb3ed0926902e0c6d1037655"
+  },
+  "src/features/catalog/useBooksPage.ts": {
+    "mtime": 1794584207.7673223,
+    "seen": 1794658923.6580236,
+    "ast_hash": "aea85b2f44283cf61539a955338bb9c7",
+    "semantic_hash": "aea85b2f44283cf61539a955338bb9c7"
+  },
+  "src/features/catalog/useTypewriter.js": {
+    "mtime": 1794579504.950756,
+    "seen": 1794658923.6580236,
+    "ast_hash": "94da2bcab7cea2c67937b75dcb2ef7b1",
+    "semantic_hash": "94da2bcab7cea2c67937b75dcb2ef7b1"
+  },
+  "src/features/library/LibraryPage.jsx": {
+    "mtime": 1783444960.462122,
+    "seen": 1794658923.6580236,
+    "ast_hash": "b05866422ee3729a04404f3c1900932e",
+    "semantic_hash": "b05866422ee3729a04404f3c1900932e"
+  },
+  "src/features/library/libraryApi.ts": {
+    "mtime": 1794617933.720701,
+    "seen": 1794658923.6580236,
+    "ast_hash": "2cd993cf98fcfeb2c143e846e1295cea",
+    "semantic_hash": "2cd993cf98fcfeb2c143e846e1295cea"
+  },
+  "src/features/reader/ReaderNotice.tsx": {
+    "mtime": 1794618261.868215,
+    "seen": 1794658923.6580236,
+    "ast_hash": "5c1cdfbe3f5ee72329352174412f591f",
+    "semantic_hash": "5c1cdfbe3f5ee72329352174412f591f"
+  },
+  "src/features/reader/ReaderPage.tsx": {
+    "mtime": 1794657676.180555,
+    "seen": 1794658923.6580236,
+    "ast_hash": "932b121e91f09f416b5ebd925db427c2",
+    "semantic_hash": "932b121e91f09f416b5ebd925db427c2"
+  },
+  "src/features/reader/ReaderSettingsMenu.tsx": {
+    "mtime": 1794618281.407145,
+    "seen": 1794658923.6580236,
+    "ast_hash": "584873b7b5de622fedfb369a588c5837",
+    "semantic_hash": "584873b7b5de622fedfb369a588c5837"
+  },
+  "src/features/reader/ReaderView.tsx": {
+    "mtime": 1794657342.797587,
+    "seen": 1794658923.6580236,
+    "ast_hash": "6a23df5cebb9da68cb1fdc5cc8f53540",
+    "semantic_hash": "6a23df5cebb9da68cb1fdc5cc8f53540"
+  },
+  "src/features/reader/epubStyles.ts": {
+    "mtime": 1794618218.887911,
+    "seen": 1794658923.6580236,
+    "ast_hash": "2f4a4820acc0f211efde88829b6107cb",
+    "semantic_hash": "2f4a4820acc0f211efde88829b6107cb"
+  },
+  "src/features/reader/readerSlice.ts": {
+    "mtime": 1794584163.4221182,
+    "seen": 1794658923.6580236,
+    "ast_hash": "1defcd8207535ca1e1c2d9ae48983428",
+    "semantic_hash": "1defcd8207535ca1e1c2d9ae48983428"
+  },
+  "src/features/reader/useEpubReader.ts": {
+    "mtime": 1794657927.0945008,
+    "seen": 1794658923.6580236,
+    "ast_hash": "37e9fc4c32867a334690b39fc0663cf4",
+    "semantic_hash": "37e9fc4c32867a334690b39fc0663cf4"
+  },
+  "src/features/settings/SettingsPage.jsx": {
+    "mtime": 1783548692.6495285,
+    "seen": 1794658923.6580236,
+    "ast_hash": "ae68ce258db5d8e4ba55ec5ecd4778d9",
+    "semantic_hash": "ae68ce258db5d8e4ba55ec5ecd4778d9"
+  },
+  "src/main.jsx": {
+    "mtime": 1783379996.0257182,
+    "seen": 1794658923.6580236,
+    "ast_hash": "b847fe7da669d9aebd9f3c95f1ce7558",
+    "semantic_hash": "b847fe7da669d9aebd9f3c95f1ce7558"
+  },
+  "src/shared/api/baseApi.test.js": {
+    "mtime": 1794617973.5988064,
+    "seen": 1794658923.6580236,
+    "ast_hash": "bb71d7482ed97585c46637a77515a33d",
+    "semantic_hash": "bb71d7482ed97585c46637a77515a33d"
+  },
+  "src/shared/api/baseApi.ts": {
+    "mtime": 1794617931.7267962,
+    "seen": 1794658923.6580236,
+    "ast_hash": "39e889459eaac21cb68c49b866b64b10",
+    "semantic_hash": "39e889459eaac21cb68c49b866b64b10"
+  },
+  "src/shared/api/config.ts": {
+    "mtime": 1794617887.9896214,
+    "seen": 1794658923.6580236,
+    "ast_hash": "d7e0a20dfdbe68ba98af4c9fad845aa5",
+    "semantic_hash": "d7e0a20dfdbe68ba98af4c9fad845aa5"
+  },
+  "src/shared/api/errors.ts": {
+    "mtime": 1794617873.8476195,
+    "seen": 1794658923.6580236,
+    "ast_hash": "cb78aa9e7de23afc7c66843b3cf802d7",
+    "semantic_hash": "cb78aa9e7de23afc7c66843b3cf802d7"
+  },
+  "src/shared/api/fetchWithAuth.ts": {
+    "mtime": 1794617871.508833,
+    "seen": 1794658923.6580236,
+    "ast_hash": "9ba653acd62e593c2902604b601992c6",
+    "semantic_hash": "9ba653acd62e593c2902604b601992c6"
+  },
+  "src/shared/api/schema.d.ts": {
+    "mtime": 1794599919.1692731,
+    "seen": 1794658923.6580236,
+    "ast_hash": "caddd06312015366468526c6c7e0b148",
+    "semantic_hash": "caddd06312015366468526c6c7e0b148"
+  },
+  "src/shared/api/session.ts": {
+    "mtime": 1794618004.2697642,
+    "seen": 1794658923.6580236,
+    "ast_hash": "526e872fe321897f35c03bb4b0a91eb3",
+    "semantic_hash": "526e872fe321897f35c03bb4b0a91eb3"
+  },
+  "src/shared/api/types.ts": {
+    "mtime": 1794584157.9294024,
+    "seen": 1794658923.6580236,
+    "ast_hash": "7364c73637fbaee1eaf01e2ae285f806",
+    "semantic_hash": "7364c73637fbaee1eaf01e2ae285f806"
+  },
+  "src/shared/i18n/strings.ts": {
+    "mtime": 1794618049.3879385,
+    "seen": 1794658923.6580236,
+    "ast_hash": "e4e979894f5f279750165dd061200888",
+    "semantic_hash": "e4e979894f5f279750165dd061200888"
+  },
+  "src/shared/i18n/useStrings.ts": {
+    "mtime": 1794584250.5632272,
+    "seen": 1794658923.6580236,
+    "ast_hash": "1ba0fcf22e2782e426283fdda55614f4",
+    "semantic_hash": "1ba0fcf22e2782e426283fdda55614f4"
+  },
+  "src/shared/ui-state/uiSlice.ts": {
+    "mtime": 1794584161.4047163,
+    "seen": 1794658923.6580236,
+    "ast_hash": "80db2dd33f0fad3255ed960f431cee78",
+    "semantic_hash": "80db2dd33f0fad3255ed960f431cee78"
+  },
+  "src/shared/ui/BookCover/BookCover.jsx": {
+    "mtime": 1783380269.9945145,
+    "seen": 1794658923.6580236,
+    "ast_hash": "43d30b0c7584e6c859510880deeada57",
+    "semantic_hash": "43d30b0c7584e6c859510880deeada57"
+  },
+  "src/shared/ui/Button/Button.jsx": {
+    "mtime": 1783380259.655624,
+    "seen": 1794658923.6580236,
+    "ast_hash": "b9c3c53d8a431cfc3c505a37837545c3",
+    "semantic_hash": "b9c3c53d8a431cfc3c505a37837545c3"
+  },
+  "src/shared/ui/Input/Input.jsx": {
+    "mtime": 1783424560.340211,
+    "seen": 1794658923.6580236,
+    "ast_hash": "eb82182fe9ab841feda4f4a645bd48bd",
+    "semantic_hash": "eb82182fe9ab841feda4f4a645bd48bd"
+  },
+  "src/shared/ui/Toast/Toast.jsx": {
+    "mtime": 1783380275.1549761,
+    "seen": 1794658923.6580236,
+    "ast_hash": "e41b92250726e5bf702836c3b310e458",
+    "semantic_hash": "e41b92250726e5bf702836c3b310e458"
+  },
+  "src/test/setup.js": {
+    "mtime": 1783550417.4181077,
+    "seen": 1794658923.6580236,
+    "ast_hash": "00e47f7b9836e8f731101981fa2bb2de",
+    "semantic_hash": "00e47f7b9836e8f731101981fa2bb2de"
+  },
+  "src/vite-env.d.ts": {
+    "mtime": 1794584115.281772,
+    "seen": 1794658923.6580236,
+    "ast_hash": "38238af64b0eef7d9b51b27d2b5afaaf",
+    "semantic_hash": "38238af64b0eef7d9b51b27d2b5afaaf"
+  },
+  "tsconfig.json": {
+    "mtime": 1794583889.8301015,
+    "seen": 1794658923.6580236,
+    "ast_hash": "87b29ae793d101f4bcf0b184af67177d",
+    "semantic_hash": "87b29ae793d101f4bcf0b184af67177d"
+  },
+  "vite.config.ts": {
+    "mtime": 1794584294.9426832,
+    "seen": 1794658923.6580236,
+    "ast_hash": "3c74ccaa8faacffbaa44f3b715131b20",
+    "semantic_hash": "3c74ccaa8faacffbaa44f3b715131b20"
+  }
+}

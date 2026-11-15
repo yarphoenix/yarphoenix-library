@@ -1,1 +1,14 @@
-{"0": "Lint & Tooling Config", "1": "App Shell & Assistant UI", "2": "Layout & Header", "3": "CI Workflow", "4": "Reader & Epub Styling", "5": "Book Page & Cards", "6": "Dependency Manifest", "7": "Catalog Page", "8": "TypeScript Config", "9": "Auth API & Types", "10": "Prettier Config", "11": "Base API & Reauth", "12": "Catalog API & Tests", "13": "Auth Slice", "14": "npm Scripts", "15": "Library API", "16": "OpenAPI Schema", "17": "Assistant API", "18": "Vite Env Types", "19": "Auth Hooks", "20": "Book Query Hooks", "21": "Library Hooks"}
+{
+  "2": "Layout & Header",
+  "3": "CI Workflow",
+  "4": "Reader & Epub Styling",
+  "5": "Book Page & Cards",
+  "7": "Catalog Page",
+  "8": "TypeScript Config",
+  "10": "Prettier Config",
+  "14": "npm Scripts",
+  "16": "OpenAPI Schema",
+  "19": "Auth Hooks",
+  "20": "Book Query Hooks",
+  "21": "Library Hooks"
+}

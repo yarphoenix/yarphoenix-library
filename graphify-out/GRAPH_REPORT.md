@@ -1,36 +1,47 @@
-# Graph Report - yarphoenix-library  (2026-11-14)
+# Graph Report - yarphoenix-library  (2026-11-15)
 
 ## Corpus Check
-- Corpus is ~46,925 words - fits in a single context window. You may not need a graph.
+- 67 files · ~47,919 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 18 file(s) not represented in the graph (top: .scss 16, (none) 2)
 
 ## Summary
-- 422 nodes · 924 edges · 22 communities (18 shown, 4 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.85)
+- 468 nodes · 980 edges · 26 communities (19 shown, 7 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 24 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
+## Graph Freshness
+- Built from commit: `8978bcd3`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
+
 ## Community Hubs (Navigation)
-- Lint & Tooling Config
-- App Shell & Assistant UI
+- eslint.config.js
+- AssistantPanel.jsx
 - Layout & Header
 - CI Workflow
 - Reader & Epub Styling
 - Book Page & Cards
-- Dependency Manifest
+- dependencies
 - Catalog Page
 - TypeScript Config
-- Auth API & Types
+- types.ts
 - Prettier Config
-- Base API & Reauth
-- Catalog API & Tests
-- Auth Slice
+- authSlice.ts
+- YarPhoenix Library — фронтенд
+- devDependencies
 - npm Scripts
-- Library API
+- package.json
 - OpenAPI Schema
-- Assistant API
-- Vite Env Types
+- vitest
+- Code Style — YarPhoenix Library (Frontend)
 - Auth Hooks
 - Book Query Hooks
 - Library Hooks
+- @testing-library/jest-dom
+- screenshots/README.md
+- @types/node@^26.6.6
+- @types/react@^19.3.0
 
 ## God Nodes (most connected - your core abstractions)
 1. `useStrings()` - 30 edges
@@ -45,93 +56,97 @@
 10. `App()` - 12 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Header()` --indirect_call--> `selectUser()`  [INFERRED]
-  src/app/layout/Header.jsx → src/features/auth/authSlice.ts
-- `LibraryPage()` --indirect_call--> `selectUser()`  [INFERRED]
-  src/features/library/LibraryPage.jsx → src/features/auth/authSlice.ts
-- `ReaderPage()` --indirect_call--> `selectUser()`  [INFERRED]
-  src/features/reader/ReaderPage.tsx → src/features/auth/authSlice.ts
-- `SettingsPage()` --indirect_call--> `selectUser()`  [INFERRED]
-  src/features/settings/SettingsPage.jsx → src/features/auth/authSlice.ts
-- `useStrings()` --indirect_call--> `selectLanguage()`  [INFERRED]
-  src/shared/i18n/useStrings.ts → src/shared/ui-state/uiSlice.ts
+- `Производительность каталога` --references--> `useBooksPage()`  [INFERRED]
+  README.md → src/features/catalog/useBooksPage.ts
+- `Правила, которые здесь соблюдаются` --references--> `fetchWithAuth()`  [INFERRED]
+  AGENTS.md → src/shared/api/fetchWithAuth.ts
+- `Правила, которые здесь соблюдаются` --references--> `fetchWithAuth()`  [INFERRED]
+  CLAUDE.md → src/shared/api/fetchWithAuth.ts
+- `Правила, которые здесь соблюдаются` --references--> `useBooksPage()`  [INFERRED]
+  AGENTS.md → src/features/catalog/useBooksPage.ts
+- `Правила, которые здесь соблюдаются` --references--> `useBooksPage()`  [INFERRED]
+  CLAUDE.md → src/features/catalog/useBooksPage.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (22 total, 4 thin omitted)
+## Communities (26 total, 7 thin omitted)
 
-### Community 0 - "Lint & Tooling Config"
-Cohesion: 0.06
-Nodes (45): devDependencies, eslint@^10.14.0, @eslint/js@^10.0.1, eslint-plugin-react-hooks@^7.1.1, eslint-plugin-react-refresh@^0.5.7, globals@^17.14.0, jsdom@^25.0.1, openapi-typescript@^7.13.0 (+37 more)
+### Community 0 - "eslint.config.js"
+Cohesion: 0.15
+Nodes (12): eslint@^10.14.0, @eslint/js@^10.0.1, eslint-plugin-react-hooks@^7.1.1, eslint-plugin-react-refresh@^0.5.7, globals@^17.14.0, typescript-eslint@^8.72.2, eslint, @eslint/js (+4 more)
 
-### Community 1 - "App Shell & Assistant UI"
-Cohesion: 0.11
-Nodes (25): react, react-router-dom, App(), useAppSelector, { useAskAssistantMutation }, AssistantPanel(), chipsFor(), templateLabel() (+17 more)
+### Community 1 - "AssistantPanel.jsx"
+Cohesion: 0.53
+Nodes (5): { useAskAssistantMutation }, AssistantPanel(), chipsFor(), templateLabel(), truncate()
 
 ### Community 2 - "Layout & Header"
-Cohesion: 0.10
-Nodes (21): BareLayout(), Header(), initials(), Layout(), useDocumentTheme(), LoginModal(), Dictionary, en (+13 more)
+Cohesion: 0.07
+Nodes (31): react, react-redux, react-router-dom, App(), BareLayout(), Header(), initials(), Layout() (+23 more)
 
 ### Community 3 - "CI Workflow"
 Cohesion: 0.06
 Nodes (36): runs-on, steps, concurrency, cancel-in-progress, group, environment, if, needs (+28 more)
 
 ### Community 4 - "Reader & Epub Styling"
-Cohesion: 0.09
-Nodes (26): absolutizeUrls(), APP_FONT_FAMILIES, applyReaderStyles(), buildReaderCss(), collectFontFaceCss(), chipClass(), Option, defaults (+18 more)
+Cohesion: 0.08
+Nodes (30): epubjs@^0.3.93, epubjs, absolutizeUrls(), APP_FONT_FAMILIES, applyReaderStyles(), buildReaderCss(), collectFontFaceCss(), tameOffscreenElements() (+22 more)
 
 ### Community 5 - "Book Page & Cards"
-Cohesion: 0.15
-Nodes (15): lucide-react, useAppDispatch, selectUser(), BookPage(), BookCard, BookCardProps, coverUrl(), LibraryCard() (+7 more)
+Cohesion: 0.12
+Nodes (26): lucide-react, useAppDispatch, useAppSelector, selectUser(), BookPage(), BookCard, BookCardProps, coverUrl() (+18 more)
 
-### Community 6 - "Dependency Manifest"
-Cohesion: 0.11
-Nodes (19): dependencies, epubjs@^0.3.93, @fontsource/libre-baskerville@^5.2.5, @fontsource-variable/libre-franklin@^5.2.5, lucide-react@^1.23.0, react@^19.2.7, react-dom@^19.2.7, react-redux@^9.2.0 (+11 more)
+### Community 6 - "dependencies"
+Cohesion: 0.18
+Nodes (11): dependencies, @fontsource/libre-baskerville@^5.2.5, @fontsource-variable/libre-franklin@^5.2.5, lucide-react@^1.23.0, react@^19.2.7, react-dom@^19.2.7, react-redux@^9.2.0, react-router-dom@^7.6.0 (+3 more)
 
 ### Community 7 - "Catalog Page"
-Cohesion: 0.17
-Nodes (10): CatalogPage(), CatalogSkeleton(), prefersReducedMotion(), shuffle(), GENRES, pageWindow(), Pagination(), useBooksPage() (+2 more)
+Cohesion: 0.22
+Nodes (9): CatalogPage(), CatalogSkeleton(), prefersReducedMotion(), shuffle(), GENRES, pageWindow(), Pagination(), initial (+1 more)
 
 ### Community 8 - "TypeScript Config"
 Cohesion: 0.10
 Nodes (19): compilerOptions, allowJs, checkJs, isolatedModules, jsx, lib, module, moduleResolution (+11 more)
 
-### Community 9 - "Auth API & Types"
-Cohesion: 0.18
-Nodes (15): authApi, BookSummary, ChangeEmailRequest, ChangePasswordRequest, ConfirmEmailChangeRequest, ConfirmEmailRequest, DeleteAccountRequest, LoginRequest (+7 more)
+### Community 9 - "types.ts"
+Cohesion: 0.08
+Nodes (30): assistantApi, authApi, BooksQuery, catalogApi, libraryApi, ProgressUpdate, ShelfPatch, baseApi (+22 more)
 
 ### Community 10 - "Prettier Config"
 Cohesion: 0.11
 Nodes (17): arrowParens, bracketSameLine, bracketSpacing, embeddedLanguageFormatting, endOfLine, htmlWhitespaceSensitivity, jsxSingleQuote, printWidth (+9 more)
 
-### Community 11 - "Base API & Reauth"
-Cohesion: 0.24
-Nodes (12): baseQueryWithReAuth(), isAuthEndpoint(), rawBaseQuery, apiBaseUrl, ensureFreshSession(), performRefresh(), RefreshOutcome, requestNewTokens() (+4 more)
+### Community 11 - "authSlice.ts"
+Cohesion: 0.08
+Nodes (32): @reduxjs/toolkit@^2.8.2, @reduxjs/toolkit, AppDispatch, RootState, store, authReducer, authSlice, AuthState (+24 more)
 
-### Community 12 - "Catalog API & Tests"
-Cohesion: 0.13
-Nodes (11): authReducer, BooksQuery, catalogApi, emptyPage, fetchRef, isRefresh(), urlOf(), user (+3 more)
+### Community 12 - "YarPhoenix Library — фронтенд"
+Cohesion: 0.07
+Nodes (27): YarPhoenix Library — Frontend, Деплой (ТЗ §11), Правила, которые здесь соблюдаются, Проверка в браузере, Сеть на этой машине (важно), Стек и команды, Структура (feature-sliced, ТЗ §6), graphify (+19 more)
 
-### Community 13 - "Auth Slice"
-Cohesion: 0.20
-Nodes (8): @reduxjs/toolkit@^2.8.2, @reduxjs/toolkit, authSlice, AuthState, empty, readStoredSession(), Session, WithAuth
+### Community 13 - "devDependencies"
+Cohesion: 0.15
+Nodes (13): devDependencies, jsdom@^25.0.1, openapi-typescript@^7.13.0, @testing-library/dom@^10.4.1, @testing-library/react@^16.3.2, typescript@^5.9.3, vite@^7.0.0, jsdom (+5 more)
 
 ### Community 14 - "npm Scripts"
 Cohesion: 0.20
 Nodes (10): scripts, build, dev, format, format:check, gen:api, lint, preview (+2 more)
 
-### Community 15 - "Library API"
-Cohesion: 0.29
-Nodes (6): libraryApi, ProgressUpdate, ShelfPatch, LibraryBook, LibraryStats, UpdateShelfRequest
+### Community 15 - "package.json"
+Cohesion: 0.18
+Nodes (10): prettier@^3.5.0, sass@^1.86.0, @types/react-dom@^19.3.0, name, private, type, version, prettier (+2 more)
 
 ### Community 16 - "OpenAPI Schema"
 Cohesion: 0.33
 Nodes (5): components, $defs, operations, paths, webhooks
 
-### Community 17 - "Assistant API"
+### Community 17 - "vitest"
 Cohesion: 0.40
-Nodes (4): assistantApi, baseApi, AskAssistantRequest, AssistantAnswer
+Nodes (4): @vitejs/plugin-react@^5.0.0, vitest@^3.2.7, @vitejs/plugin-react, vitest
+
+### Community 18 - "Code Style — YarPhoenix Library (Frontend)"
+Cohesion: 0.15
+Nodes (11): 1. JavaScript / TypeScript / JSX formatting (mirrors Prettier), 2.1. TypeScript, 2. React conventions, 3.1. One declaration per line, 3.2. One blank line between rulesets, 3. CSS / SCSS structure (NOT enforced by Prettier — apply manually), 4. BEM naming for classes, Code Style — YarPhoenix Library (Frontend) (+3 more)
 
 ## Knowledge Gaps
 - **4 isolated node(s):** `{ useAskAssistantMutation }`, `{
@@ -160,14 +175,14 @@ Nodes (4): assistantApi, baseApi, AskAssistantRequest, AssistantAnswer
   useRemoveFromLibraryMutation,
   useUpdateProgressMutation,
 }`
-  These have ≤1 connection - possible missing edges. (Counts symbols only; 163 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 193 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `react` connect `App Shell & Assistant UI` to `Lint & Tooling Config`, `Layout & Header`, `Reader & Epub Styling`, `Book Page & Cards`, `Dependency Manifest`, `Catalog Page`?**
-  _High betweenness centrality (0.093) - this node is a cross-community bridge._
+- **Why does `react` connect `Layout & Header` to `AssistantPanel.jsx`, `Reader & Epub Styling`, `Book Page & Cards`, `dependencies`, `Catalog Page`, `types.ts`, `package.json`?**
+  _High betweenness centrality (0.089) - this node is a cross-community bridge._
 - **What connects `{ useAskAssistantMutation }`, `{
   useLoginMutation,
   useRegisterMutation,
@@ -183,14 +198,14 @@ _Questions this graph is uniquely positioned to answer:_
   useUploadAvatarMutation,
   useDeleteAvatarMutation,
 }`, `{ useGetBooksQuery, useGetBookQuery }` to the rest of the system?**
-  _4 weakly-connected nodes found - possible missing edges._
-- **Should `Lint & Tooling Config` be split into smaller, more focused modules?**
-  _Cohesion score 0.06292517006802721 - nodes in this community are weakly interconnected._
-- **Why does `@reduxjs/toolkit` connect `Auth Slice` to `Lint & Tooling Config`, `Layout & Header`, `Reader & Epub Styling`, `Book Page & Cards`, `Dependency Manifest`, `Base API & Reauth`, `Catalog API & Tests`?**
-  _High betweenness centrality (0.072) - this node is a cross-community bridge._
-- **Should `App Shell & Assistant UI` be split into smaller, more focused modules?**
-  _Cohesion score 0.11479591836734694 - nodes in this community are weakly interconnected._
-- **Why does `react-router-dom` connect `App Shell & Assistant UI` to `Lint & Tooling Config`, `Layout & Header`, `Book Page & Cards`, `Dependency Manifest`, `Catalog Page`?**
-  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+  _4 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Layout & Header` be split into smaller, more focused modules?**
-  _Cohesion score 0.09871794871794871 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06873706004140787 - nodes in this community are weakly interconnected._
+- **Why does `@reduxjs/toolkit` connect `authSlice.ts` to `Layout & Header`, `Reader & Epub Styling`, `Book Page & Cards`, `package.json`?**
+  _High betweenness centrality (0.062) - this node is a cross-community bridge._
+- **Should `CI Workflow` be split into smaller, more focused modules?**
+  _Cohesion score 0.05555555555555555 - nodes in this community are weakly interconnected._
+- **Why does `useBooksPage()` connect `YarPhoenix Library — фронтенд` to `types.ts`, `Catalog Page`?**
+  _High betweenness centrality (0.061) - this node is a cross-community bridge._
+- **Should `Reader & Epub Styling` be split into smaller, more focused modules?**
+  _Cohesion score 0.07804878048780488 - nodes in this community are weakly interconnected._
