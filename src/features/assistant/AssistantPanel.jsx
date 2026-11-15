@@ -49,7 +49,7 @@ export function AssistantPanel({ bookId, selection, getCfi, onClearSelection, on
     } catch (err) {
       setMessages((prev) => [
         ...prev,
-        { from: 'assistant', text: err?.data?.message ?? t.catalogError, degraded: true },
+        { from: 'assistant', text: err?.data?.message ?? t.assistantError, degraded: true },
       ]);
     }
   };

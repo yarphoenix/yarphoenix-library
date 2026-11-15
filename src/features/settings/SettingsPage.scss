@@ -119,6 +119,13 @@
     }
   }
 
+  // Сообщение под группой полей: например, пароли не совпадают.
+  &__field-error {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--color-error);
+  }
+
   &__genres {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));

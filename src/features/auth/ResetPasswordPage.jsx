@@ -33,7 +33,7 @@ export function ResetPasswordPage() {
       return;
     }
     if (password !== confirm) {
-      setError(t.confirmPassword);
+      setError(t.passwordMismatch);
       return;
     }
     try {

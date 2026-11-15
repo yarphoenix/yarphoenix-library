@@ -61,7 +61,9 @@ export function LoginModal() {
       dispatch(toastShown(t.toastIn));
       close();
     } catch (err) {
-      setError(err?.data?.message ?? t.catalogError);
+      const fallback =
+        mode === 'forgot' ? t.actionError : mode === 'register' ? t.registerError : t.loginError;
+      setError(err?.data?.message ?? fallback);
     }
   };
 

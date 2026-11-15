@@ -76,7 +76,7 @@ export function SettingsPage() {
       await uploadAvatar(file).unwrap();
       dispatch(toastShown(t.toastSaved));
     } catch (err) {
-      dispatch(toastShown(err?.data?.message ?? t.catalogError));
+      dispatch(toastShown(err?.data?.message ?? t.settingsError));
     }
   };
 
@@ -85,7 +85,7 @@ export function SettingsPage() {
       await deleteAvatar().unwrap();
       dispatch(toastShown(t.toastSaved));
     } catch (err) {
-      dispatch(toastShown(err?.data?.message ?? t.catalogError));
+      dispatch(toastShown(err?.data?.message ?? t.settingsError));
     }
   };
 
@@ -94,13 +94,16 @@ export function SettingsPage() {
       await updateProfile({ nickname, favoriteGenres: genres, uiLanguage: lang }).unwrap();
       dispatch(toastShown(t.toastSaved));
     } catch (err) {
-      dispatch(toastShown(err?.data?.message ?? t.catalogError));
+      dispatch(toastShown(err?.data?.message ?? t.settingsError));
     }
   };
 
+  // Кнопка смены пароля при несовпадении выключена — причину показываем под полями сразу,
+  // как только человек начал повторять пароль.
+  const passwordMismatch = pwConfirm !== '' && pwNew !== pwConfirm;
+
   const submitPassword = async () => {
     if (!pwCurrent || !pwNew || pwNew !== pwConfirm) {
-      dispatch(toastShown(t.confirmPassword));
       return;
     }
     try {
@@ -111,7 +114,7 @@ export function SettingsPage() {
       setPwConfirm('');
       dispatch(toastShown(t.toastPw));
     } catch (err) {
-      dispatch(toastShown(err?.data?.message ?? t.catalogError));
+      dispatch(toastShown(err?.data?.message ?? t.actionError));
     }
   };
 
@@ -123,7 +126,7 @@ export function SettingsPage() {
       setEmailPassword('');
       dispatch(toastShown(t.emailChangeSent));
     } catch (err) {
-      dispatch(toastShown(err?.data?.message ?? t.catalogError));
+      dispatch(toastShown(err?.data?.message ?? t.actionError));
     }
   };
 
@@ -134,7 +137,7 @@ export function SettingsPage() {
       dispatch(toastShown(t.toastDeleted));
       navigate('/');
     } catch (err) {
-      dispatch(toastShown(err?.data?.message ?? t.catalogError));
+      dispatch(toastShown(err?.data?.message ?? t.actionError));
     }
   };
 
@@ -240,6 +243,11 @@ export function SettingsPage() {
             onChange={(e) => setPwConfirm(e.target.value)}
           />
         </div>
+        {passwordMismatch && (
+          <p className="settings__field-error" role="alert">
+            {t.passwordMismatch}
+          </p>
+        )}
         <Button
           variant="secondary"
           disabled={changingPassword || !pwCurrent || !pwNew || pwNew !== pwConfirm}
