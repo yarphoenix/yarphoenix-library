@@ -1,4 +1,4 @@
-import { Plus } from 'lucide-react';
+import { BookOpen, Plus } from 'lucide-react';
 import { memo, type MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -13,11 +13,16 @@ import { useAddToLibraryMutation } from '../library/libraryApi';
 import { coverUrl } from './coverUrl';
 import './BookCard.scss';
 
-type BookCardProps = { book: BookSummary };
+type BookCardProps = {
+  book: BookSummary;
+  // Метка «можно читать». Нужна там, где в выдаче смешаны читаемые и нечитаемые книги
+  // (поиск по всему Open Library); в коллекции читается всё, и метка была бы шумом.
+  showReadable?: boolean;
+};
 
 // memo + стабильный key={externalId} у родителя: карточки не перерисовываются,
 // когда меняется только состояние загрузки/наведения вокруг них.
-export const BookCard = memo(function BookCard({ book }: BookCardProps) {
+export const BookCard = memo(function BookCard({ book, showReadable = false }: BookCardProps) {
   const { t } = useStrings();
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
@@ -48,9 +53,17 @@ export const BookCard = memo(function BookCard({ book }: BookCardProps) {
         <BookCover
           className="book-card__cover"
           title={book.title}
+          author={book.author}
           src={coverUrl(book, 'M')}
           width={150}
+          decorative
         />
+        {showReadable && book.isReadable && (
+          <span className="book-card__badge">
+            <BookOpen size={12} strokeWidth={2.4} aria-hidden="true" />
+            {t.readable}
+          </span>
+        )}
         <button
           type="button"
           className="book-card__add"
@@ -59,11 +72,14 @@ export const BookCard = memo(function BookCard({ book }: BookCardProps) {
           disabled={isLoading}
           onClick={quickAdd}
         >
-          <Plus size={15} strokeWidth={2.4} />
+          <Plus size={15} strokeWidth={2.4} aria-hidden="true" />
         </button>
       </div>
-      <h3 className="book-card__title">{book.title}</h3>
-      <p className="book-card__author">{book.author}</p>
+      {/* Название обрезается до двух строк — полное остаётся в подсказке. */}
+      <h3 className="book-card__title" title={book.title}>
+        {book.title}
+      </h3>
+      <p className="book-card__author">{book.author || t.unknownAuthor}</p>
     </Link>
   );
 });

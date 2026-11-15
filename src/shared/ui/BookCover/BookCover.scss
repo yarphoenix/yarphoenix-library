@@ -4,17 +4,74 @@
   box-shadow: var(--shadow-sm);
   background: var(--surface-sunken);
 
+  // Обложки нет — набираем её типографикой: название и автор на цветном «переплёте».
+  // Размер шрифта задаёт компонент от ширины обложки, поэтому все отступы здесь в em.
   &--placeholder {
+    position: relative;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.6em;
+    box-sizing: border-box;
+    padding: 1.4em 1.2em 1.2em;
+    overflow: hidden;
+    // Переплёт светлый в обеих темах сайта, поэтому текст на нём всегда тёмный.
+    color: var(--color-ink-900);
+    user-select: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0.55em;
+      border: 1px solid color-mix(in srgb, var(--color-ink-900) 22%, transparent);
+      border-radius: var(--radius-sm);
+      pointer-events: none;
+    }
   }
 
-  &__letter {
+  &--tone-1 {
+    background: var(--color-orange-300);
+  }
+
+  &--tone-2 {
+    background: var(--color-cream-400);
+  }
+
+  &--tone-3 {
+    background: var(--color-orange-100);
+  }
+
+  &--tone-4 {
+    background: var(--color-cream-300);
+  }
+
+  &--tone-5 {
+    background: var(--color-ink-300);
+  }
+
+  &__title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    overflow: hidden;
+    overflow-wrap: anywhere;
     font-family: var(--font-serif-display);
-    font-size: 2.6em;
+    font-size: 1em;
     font-weight: var(--weight-bold);
-    color: rgba(52, 52, 52, 0.55);
-    user-select: none;
+    line-height: var(--leading-snug);
+  }
+
+  &__author {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    font-size: 0.8em;
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-snug);
+    color: color-mix(in srgb, var(--color-ink-900) 72%, transparent);
   }
 }

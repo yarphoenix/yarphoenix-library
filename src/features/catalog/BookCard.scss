@@ -4,20 +4,47 @@
   gap: 10px;
   color: inherit;
 
+  // Приподнимается вся обложка вместе с меткой и кнопкой, а не одна картинка под ними.
+  // display: flex — чтобы под картинкой не оставалось строчного зазора. Самой обложке display
+  // здесь не задаём: у заглушки он свой (см. BookCover.scss).
   &__cover-box {
     position: relative;
+    display: flex;
     align-self: flex-start;
+    transition: transform var(--duration-base) var(--ease-standard);
+  }
+
+  &:hover &__cover-box {
+    transform: translateY(-3px);
   }
 
   &__cover {
-    transition:
-      transform var(--duration-base) var(--ease-standard),
-      box-shadow var(--duration-base) var(--ease-standard);
+    transition: box-shadow var(--duration-base) var(--ease-standard);
   }
 
   &:hover &__cover {
-    transform: translateY(-3px);
     box-shadow: var(--shadow-md);
+  }
+
+  // Метка и кнопка лежат поверх обложки, которая светлая в обеих темах сайта, —
+  // поэтому у них свои светлая подложка и тёмный текст, а не цвета темы.
+  &__badge {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    max-width: calc(100% - 16px);
+    padding: 4px 9px;
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--color-cream-100) 94%, transparent);
+    color: var(--color-ink-900);
+    font-size: 11px;
+    font-weight: var(--weight-bold);
+    line-height: 1.2;
+    white-space: nowrap;
+    box-shadow: var(--shadow-sm);
   }
 
   &__add {
@@ -32,7 +59,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(249, 248, 244, 0.94);
+    background: color-mix(in srgb, var(--color-cream-100) 94%, transparent);
     color: var(--color-ink-900);
     box-shadow: var(--shadow-sm);
     opacity: 0;
@@ -44,7 +71,20 @@
     opacity: 1;
   }
 
+  // На сенсорном экране наведения нет — кнопка видна всегда.
+  @media (hover: none) {
+    &__add {
+      opacity: 1;
+    }
+  }
+
   &__title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: anywhere;
     font-size: var(--text-md);
     font-weight: var(--weight-bold);
     color: var(--text-primary);
@@ -53,6 +93,9 @@
   }
 
   &__author {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: var(--text-sm);
     color: var(--text-tertiary);
     margin: 1px 0 0;

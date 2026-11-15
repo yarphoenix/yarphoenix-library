@@ -8,18 +8,6 @@
   }
 }
 
-@keyframes catalog-caret-blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-
-  50.01%,
-  100% {
-    opacity: 0;
-  }
-}
-
 .catalog {
   &__hero {
     position: relative;
@@ -89,95 +77,24 @@
     padding: 40px clamp(16px, 4vw, 40px) 72px;
   }
 
+  // Поиск и переключатель режима в одну строку; на узком экране переключатель уходит вниз.
+  &__controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-4);
+  }
+
   &__search {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    background: var(--surface-card);
-    border: 1px solid var(--border-default);
-    border-radius: var(--radius-pill);
-    padding: 12px 20px;
-    box-shadow: var(--shadow-xs);
+    flex: 1 1 320px;
+    min-width: 0;
     max-width: 600px;
+  }
+
+  &__scope-hint {
+    margin: var(--space-3) 0 0;
+    font-size: var(--text-sm);
     color: var(--text-tertiary);
-  }
-
-  &__search-field {
-    position: relative;
-    display: flex;
-    flex: 1;
-    min-width: 0;
-  }
-
-  &__search-input {
-    border: none;
-    outline: none;
-    background: transparent;
-    flex: 1;
-    min-width: 0;
-    font-size: var(--text-md);
-    color: var(--text-primary);
-
-    &::-webkit-search-cancel-button {
-      display: none;
-    }
-  }
-
-  // Печатающий плейсхолдер поверх поля: выровнен по тексту input, не ловит клики.
-  &__search-ghost {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    pointer-events: none;
-    font-size: var(--text-md);
-    color: var(--text-tertiary);
-    transition:
-      transform 0.45s ease-in-out,
-      opacity 0.45s ease-in-out;
-  }
-
-  &__search-ghost--exiting {
-    transform: translateY(-9px);
-    opacity: 0;
-  }
-
-  &__search-ghost-text {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: clip;
-  }
-
-  &__search-caret {
-    flex: none;
-    width: 1.5px;
-    height: 1.05em;
-    margin-left: 1px;
-    background: var(--text-tertiary);
-    animation: catalog-caret-blink 1s step-end infinite;
-  }
-
-  &__search-tab {
-    flex: none;
-    font-family: var(--font-sans-ui);
-    font-size: 11px;
-    font-weight: var(--weight-bold);
-    letter-spacing: var(--tracking-wide);
-    color: var(--text-tertiary);
-    background: var(--surface-card-alt);
-    border: 1px solid var(--border-default);
-    border-radius: var(--radius-sm);
-    padding: 2px 7px;
-  }
-
-  &__search-clear {
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: var(--text-tertiary);
-    display: flex;
-    padding: 2px;
   }
 
   &__genres {
@@ -242,6 +159,11 @@
       pointer-events: none;
     }
 
+    // Прежние результаты под сообщением об ошибке: приглушены, но открыть книгу можно.
+    &--stale {
+      opacity: 0.6;
+    }
+
     &--skeleton {
       animation: skeleton-pulse 0.9s ease-in-out infinite alternate;
     }
@@ -271,11 +193,9 @@
     }
   }
 
-  &__error {
-    padding: 56px 0;
-    text-align: center;
-    font-size: var(--text-lg);
-    color: var(--color-error);
+  // Баннер ошибки над прежними результатами.
+  &__notice {
+    margin-bottom: var(--space-5);
   }
 
   &__empty {
@@ -287,5 +207,12 @@
     font-size: var(--text-lg);
     color: var(--text-tertiary);
     margin: 0 0 var(--space-4);
+  }
+
+  &__empty-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
   }
 }

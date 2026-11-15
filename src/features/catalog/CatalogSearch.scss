@@ -1,0 +1,110 @@
+@keyframes catalog-search-caret-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.catalog-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--surface-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-pill);
+  padding: 12px 20px;
+  box-shadow: var(--shadow-xs);
+  color: var(--text-tertiary);
+
+  &:focus-within {
+    border-color: var(--accent-primary-hover);
+    box-shadow: 0 0 0 3px var(--focus-ring);
+  }
+
+  &__icon {
+    flex: none;
+  }
+
+  &__field {
+    position: relative;
+    display: flex;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    background: transparent;
+    flex: 1;
+    min-width: 0;
+    font-size: var(--text-md);
+    color: var(--text-primary);
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+  }
+
+  // Печатающий плейсхолдер поверх поля: выровнен по тексту input, не ловит клики.
+  &__ghost {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+    font-size: var(--text-md);
+    color: var(--text-tertiary);
+    transition:
+      transform 0.45s ease-in-out,
+      opacity 0.45s ease-in-out;
+
+    &--exiting {
+      transform: translateY(-9px);
+      opacity: 0;
+    }
+  }
+
+  &__ghost-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+
+  &__caret {
+    flex: none;
+    width: 1.5px;
+    height: 1.05em;
+    margin-left: 1px;
+    background: var(--text-tertiary);
+    animation: catalog-search-caret-blink 1s step-end infinite;
+  }
+
+  &__tab {
+    flex: none;
+    font-family: var(--font-sans-ui);
+    font-size: 11px;
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-tertiary);
+    background: var(--surface-card-alt);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    padding: 2px 7px;
+  }
+
+  &__clear {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--text-tertiary);
+    display: flex;
+    padding: 2px;
+  }
+}

@@ -60,8 +60,8 @@ export const libraryApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['Library', 'LibraryStats'],
     }),
-    // «Читать» для PD-книги: сервер докачивает файл с Internet Archive в MinIO
-    // и переводит книгу в Reading (ленивый ингест, ТЗ §5.1.2). Возвращает bookId.
+    // «Читать» для книги коллекции: при первом обращении сервер скачивает её текст
+    // (Standard Ebooks / Project Gutenberg) в MinIO и переводит книгу в Reading.
     startReading: builder.mutation<LibraryBook, BookRef>({
       query: ({ provider, externalId }) => ({
         url: 'library/books/read',

@@ -7,11 +7,16 @@ const MIN_HOLD_MS = 2500; // не уводить слишком быстро н�
 const EXIT_MS = 450; // длительность ухода вверх — синхронно с CSS-транзишеном
 const COOLDOWN_MS = 1000; // пауза между фразами
 
-const initial = { text: '', exiting: false, index: 0 };
+// text — что печатать; fill — что подставить в поиск по Tab (null — фраза без подстановки).
+export type TypewriterPhrase = { text: string; fill: string | null };
+
+type TypewriterState = { text: string; exiting: boolean; index: number };
+
+const initial: TypewriterState = { text: '', exiting: false, index: 0 };
 
 // Печатающий плейсхолдер: печатает фразу по буквам, держит ~10с, уводит вверх,
-// пауза 1с, следующая. phrases — массив { text, fill }. enabled=false → пусто.
-export function useTypewriter(phrases, enabled) {
+// пауза 1с, следующая. enabled=false → пусто.
+export function useTypewriter(phrases: TypewriterPhrase[], enabled: boolean) {
   const [state, setState] = useState(initial);
   const active = enabled && phrases.length > 0;
 
@@ -21,9 +26,9 @@ export function useTypewriter(phrases, enabled) {
     }
 
     let cancelled = false;
-    let timer;
-    const wait = (ms) =>
-      new Promise((resolve) => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const wait = (ms: number) =>
+      new Promise<void>((resolve) => {
         timer = setTimeout(resolve, ms);
       });
 
@@ -31,6 +36,9 @@ export function useTypewriter(phrases, enabled) {
       let i = 0;
       while (!cancelled) {
         const phrase = phrases[i % phrases.length];
+        if (!phrase) {
+          return;
+        }
 
         for (let c = 1; c <= phrase.text.length; c += 1) {
           if (cancelled) return;
@@ -53,7 +61,7 @@ export function useTypewriter(phrases, enabled) {
       }
     };
 
-    run();
+    void run();
     return () => {
       cancelled = true;
       clearTimeout(timer);
@@ -62,7 +70,7 @@ export function useTypewriter(phrases, enabled) {
     };
   }, [active, phrases]);
 
-  const phrase = phrases.length ? phrases[state.index % phrases.length] : null;
+  const phrase = phrases[state.index % phrases.length] ?? null;
   // Выключен — наружу всегда пусто, даже если в состоянии ещё лежит недопечатанная фраза.
   return active
     ? { text: state.text, exiting: state.exiting, phrase }
