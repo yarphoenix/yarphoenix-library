@@ -5,6 +5,12 @@ import { READER_FONTS, READER_SIZES, READER_THEMES, type ReaderSettings } from '
 const STYLE_KEY = 'yarphoenix-reader';
 const FONTS_KEY = 'yarphoenix-reader-fonts';
 
+// Метка элемента, который издание спрятало за левый край страницы (см. tameOffscreenElements).
+const OFFSCREEN_ATTRIBUTE = 'data-yarphoenix-offscreen';
+const SCANNED_ATTRIBUTE = 'data-yarphoenix-scanned';
+// `left: -999em` и `-9999px` — это тысячи пикселей; обычная вёрстка так далеко не уходит.
+const OFFSCREEN_LEFT_PX = -1000;
+
 // Семейства из READER_FONTS, которые приложение подключает через @fontsource.
 const APP_FONT_FAMILIES = ['Libre Baskerville', 'Libre Franklin Variable'];
 
@@ -26,7 +32,35 @@ export function buildReaderCss(settings: ReaderSettings): string {
     'p, li, blockquote, dd, dt, td, th, div, span, h1, h2, h3, h4, h5, h6 { font-family: inherit !important; }',
     // Ссылки потеряли собственный цвет — оставляем их различимыми.
     'a { text-decoration: underline; }',
+    // Спрятанное изданием за край страницы прячем обрезкой: текст остаётся доступным экранной
+    // читалке, но больше не растягивает раздел (см. tameOffscreenElements).
+    `[${OFFSCREEN_ATTRIBUTE}] { left: auto !important; width: 1px !important; height: 1px !important; overflow: hidden !important; clip-path: inset(50%) !important; white-space: nowrap !important; }`,
   ].join('\n');
+}
+
+/**
+ * Часть изданий (например, Standard Ebooks) прячет служебные заголовки для экранных читалок
+ * приёмом `position: absolute; left: -999em`. epub.js считает ширину раздела по прямоугольнику,
+ * охватывающему всё содержимое, поэтому спрятанный заголовок растягивает раздел из двух страниц
+ * на десятки пустых. Такие элементы помечаются, а правило из buildReaderCss возвращает их на
+ * место и скрывает обрезкой.
+ */
+export function tameOffscreenElements(doc: Document): void {
+  const view = doc.defaultView;
+  const root = doc.documentElement;
+  // Документ размечается один раз: смена настроек чтения расположение элементов не меняет.
+  if (!view || !doc.body || root.hasAttribute(SCANNED_ATTRIBUTE)) {
+    return;
+  }
+  root.setAttribute(SCANNED_ATTRIBUTE, '');
+
+  for (const element of Array.from(doc.body.querySelectorAll('*'))) {
+    const style = view.getComputedStyle(element);
+    const positioned = style.position === 'absolute' || style.position === 'fixed';
+    if (positioned && Number.parseFloat(style.left) < OFFSCREEN_LEFT_PX) {
+      element.setAttribute(OFFSCREEN_ATTRIBUTE, '');
+    }
+  }
 }
 
 // Адреса файлов шрифтов в правилах заданы относительно таблицы стилей приложения;
@@ -73,6 +107,9 @@ let fontFaceCss = '';
 
 /** Подключает шрифты приложения и оформление темы к одному документу книги. */
 export function applyReaderStyles(contents: Contents, settings: ReaderSettings): void {
+  // До стилей темы: проход смотрит на расположение элементов, заданное самим изданием.
+  tameOffscreenElements(contents.document);
+
   // Пустой результат не запоминаем: стили приложения могли ещё не загрузиться.
   fontFaceCss ||= collectFontFaceCss();
   if (fontFaceCss) {
