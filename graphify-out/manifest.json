@@ -72,10 +72,10 @@
     "semantic_hash": "b5d74a1ac77cf837acfbcd02b93b85c1"
   },
   "src/features/assistant/AssistantPanel.jsx": {
-    "mtime": 1783549712.140863,
-    "seen": 1794658923.6580236,
-    "ast_hash": "144431c7ce19a4a95ea11941ec8634fa",
-    "semantic_hash": "144431c7ce19a4a95ea11941ec8634fa"
+    "mtime": 1794744246.5886583,
+    "seen": 1794761413.1165292,
+    "ast_hash": "400003bde9f5feb60d8aed5cd3727837",
+    "semantic_hash": ""
   },
   "src/features/assistant/assistantApi.ts": {
     "mtime": 1794584248.4899225,
@@ -96,16 +96,16 @@
     "semantic_hash": "a1b735f9de09c203cb3adeac27f3c354"
   },
   "src/features/auth/LoginModal.jsx": {
-    "mtime": 1783523749.2115152,
-    "seen": 1794658923.6580236,
-    "ast_hash": "a472dba04409f2a6c2459fbce4ac9d82",
-    "semantic_hash": "a472dba04409f2a6c2459fbce4ac9d82"
+    "mtime": 1794744259.6865146,
+    "seen": 1794761413.1165292,
+    "ast_hash": "a1249618634bedcc8e9f7b6036657117",
+    "semantic_hash": ""
   },
   "src/features/auth/ResetPasswordPage.jsx": {
-    "mtime": 1783523809.261803,
-    "seen": 1794658923.6580236,
-    "ast_hash": "c1bb9e68613e2546dab33c1bad4aa7a4",
-    "semantic_hash": "c1bb9e68613e2546dab33c1bad4aa7a4"
+    "mtime": 1794744258.1482913,
+    "seen": 1794761413.1165292,
+    "ast_hash": "97fa968f3bdac1664a5425ebdc2ad814",
+    "semantic_hash": ""
   },
   "src/features/auth/authApi.ts": {
     "mtime": 1794584246.4020014,
@@ -126,34 +126,16 @@
     "semantic_hash": "d66c781043b39a6fc0a099254393a7d2"
   },
   "src/features/catalog/BookCard.tsx": {
-    "mtime": 1794656923.681565,
-    "seen": 1794658923.6580236,
-    "ast_hash": "826720569ed9bdd5b262d69ea808f5de",
-    "semantic_hash": "826720569ed9bdd5b262d69ea808f5de"
-  },
-  "src/features/catalog/CatalogPage.jsx": {
-    "mtime": 1794579499.8851042,
-    "seen": 1794658923.6580236,
-    "ast_hash": "33e1b9f6649c2a83a97b2bef3a372517",
-    "semantic_hash": "33e1b9f6649c2a83a97b2bef3a372517"
-  },
-  "src/features/catalog/Pagination.jsx": {
-    "mtime": 1783380401.2427323,
-    "seen": 1794658923.6580236,
-    "ast_hash": "e1b48d2c388bc34f597b5e24ad328184",
-    "semantic_hash": "e1b48d2c388bc34f597b5e24ad328184"
+    "mtime": 1794743979.7081277,
+    "seen": 1794761413.1165292,
+    "ast_hash": "8026574d09908237a1b09fdb9a0d63b9",
+    "semantic_hash": ""
   },
   "src/features/catalog/catalogApi.ts": {
-    "mtime": 1794584242.6519663,
-    "seen": 1794658923.6580236,
-    "ast_hash": "9eb657ed941db11d67100ee2e04a6e58",
-    "semantic_hash": "9eb657ed941db11d67100ee2e04a6e58"
-  },
-  "src/features/catalog/coverUrl.js": {
-    "mtime": 1783380296.3089905,
-    "seen": 1794658923.6580236,
-    "ast_hash": "96450fff1822194361dcf3e390662e02",
-    "semantic_hash": "96450fff1822194361dcf3e390662e02"
+    "mtime": 1794743930.0732782,
+    "seen": 1794761413.1165292,
+    "ast_hash": "86a8fa6b5f1bf2658522302172393ab4",
+    "semantic_hash": ""
   },
   "src/features/catalog/genres.js": {
     "mtime": 1783380301.014541,
@@ -173,23 +155,11 @@
     "ast_hash": "aea85b2f44283cf61539a955338bb9c7",
     "semantic_hash": "aea85b2f44283cf61539a955338bb9c7"
   },
-  "src/features/catalog/useTypewriter.js": {
-    "mtime": 1794579504.950756,
-    "seen": 1794658923.6580236,
-    "ast_hash": "94da2bcab7cea2c67937b75dcb2ef7b1",
-    "semantic_hash": "94da2bcab7cea2c67937b75dcb2ef7b1"
-  },
-  "src/features/library/LibraryPage.jsx": {
-    "mtime": 1783444960.462122,
-    "seen": 1794658923.6580236,
-    "ast_hash": "b05866422ee3729a04404f3c1900932e",
-    "semantic_hash": "b05866422ee3729a04404f3c1900932e"
-  },
   "src/features/library/libraryApi.ts": {
-    "mtime": 1794617933.720701,
-    "seen": 1794658923.6580236,
-    "ast_hash": "2cd993cf98fcfeb2c143e846e1295cea",
-    "semantic_hash": "2cd993cf98fcfeb2c143e846e1295cea"
+    "mtime": 1794744248.5647943,
+    "seen": 1794761413.1165292,
+    "ast_hash": "facc64b54623c9351062ed53bb0837ed",
+    "semantic_hash": ""
   },
   "src/features/reader/ReaderNotice.tsx": {
     "mtime": 1794618261.868215,
@@ -234,10 +204,10 @@
     "semantic_hash": "37e9fc4c32867a334690b39fc0663cf4"
   },
   "src/features/settings/SettingsPage.jsx": {
-    "mtime": 1783548692.6495285,
-    "seen": 1794658923.6580236,
-    "ast_hash": "ae68ce258db5d8e4ba55ec5ecd4778d9",
-    "semantic_hash": "ae68ce258db5d8e4ba55ec5ecd4778d9"
+    "mtime": 1794744241.1327581,
+    "seen": 1794761413.1165292,
+    "ast_hash": "797eb75548a91e75fbd0ecbc843545a8",
+    "semantic_hash": ""
   },
   "src/main.jsx": {
     "mtime": 1783379996.0257182,
@@ -294,10 +264,10 @@
     "semantic_hash": "7364c73637fbaee1eaf01e2ae285f806"
   },
   "src/shared/i18n/strings.ts": {
-    "mtime": 1794618049.3879385,
-    "seen": 1794658923.6580236,
-    "ast_hash": "e4e979894f5f279750165dd061200888",
-    "semantic_hash": "e4e979894f5f279750165dd061200888"
+    "mtime": 1794743848.140188,
+    "seen": 1794761413.1165292,
+    "ast_hash": "35cdd6387f710211c09fc664e4ad1054",
+    "semantic_hash": ""
   },
   "src/shared/i18n/useStrings.ts": {
     "mtime": 1794584250.5632272,
@@ -310,12 +280,6 @@
     "seen": 1794658923.6580236,
     "ast_hash": "80db2dd33f0fad3255ed960f431cee78",
     "semantic_hash": "80db2dd33f0fad3255ed960f431cee78"
-  },
-  "src/shared/ui/BookCover/BookCover.jsx": {
-    "mtime": 1783380269.9945145,
-    "seen": 1794658923.6580236,
-    "ast_hash": "43d30b0c7584e6c859510880deeada57",
-    "semantic_hash": "43d30b0c7584e6c859510880deeada57"
   },
   "src/shared/ui/Button/Button.jsx": {
     "mtime": 1783380259.655624,
@@ -378,21 +342,21 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1794693398.5885055,
-    "seen": 1794693906.6554153,
-    "ast_hash": "9d4996b69d155c85a3283fb179d6de47",
+    "mtime": 1794761349.173893,
+    "seen": 1794761413.1165292,
+    "ast_hash": "ab8c2973cb1fd83cafeead9347b77715",
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1794693374.6521695,
-    "seen": 1794693906.6554153,
-    "ast_hash": "2124ad28cfff7460a5c54c19ccad0e1c",
+    "mtime": 1794761344.7389164,
+    "seen": 1794761413.1165292,
+    "ast_hash": "70f8c770a29a096af694cca4f75b523f",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1794693342.1740944,
-    "seen": 1794693906.6554153,
-    "ast_hash": "f87f66bb43a5efcaf0003f85c3523bc6",
+    "mtime": 1794761352.680051,
+    "seen": 1794761413.1165292,
+    "ast_hash": "3b6fbb46884885b2c2aba980d95ff7bf",
     "semantic_hash": ""
   },
   "docs/screenshots/README.md": {
@@ -429,6 +393,120 @@
     "mtime": 1783380154.1333356,
     "seen": 1794693906.6554153,
     "ast_hash": "1f4e4ce1c40f2c0d8918c0b04251f514",
+    "semantic_hash": ""
+  },
+  "src/features/catalog/CatalogPage.test.tsx": {
+    "mtime": 1794760980.3252294,
+    "seen": 1794761413.1165292,
+    "ast_hash": "7de9a7d83d4a52b40ca2b839ec848eb6",
+    "semantic_hash": ""
+  },
+  "src/features/catalog/CatalogPage.tsx": {
+    "mtime": 1794760973.8149714,
+    "seen": 1794761413.1165292,
+    "ast_hash": "afbd42ea6267b5aefabd4039ed96c049",
+    "semantic_hash": ""
+  },
+  "src/features/catalog/CatalogSearch.tsx": {
+    "mtime": 1794744029.3836117,
+    "seen": 1794761413.1165292,
+    "ast_hash": "d344109b83bcf5746d15a05f215d1179",
+    "semantic_hash": ""
+  },
+  "src/features/catalog/CatalogSkeleton.tsx": {
+    "mtime": 1794743936.8847332,
+    "seen": 1794761413.1165292,
+    "ast_hash": "ee812a1eca963aa117cc15fb60897124",
+    "semantic_hash": ""
+  },
+  "src/features/catalog/Pagination.tsx": {
+    "mtime": 1794743974.2386637,
+    "seen": 1794761413.1165292,
+    "ast_hash": "d65c053f2cf9d1ff6c1a2b522f8f06a4",
+    "semantic_hash": ""
+  },
+  "src/features/catalog/ScopeSwitch.tsx": {
+    "mtime": 1794744025.5869026,
+    "seen": 1794761413.1165292,
+    "ast_hash": "d8febdd445d406d8602753caf38b8f5e",
+    "semantic_hash": ""
+  },
+  "src/features/catalog/coverUrl.test.ts": {
+    "mtime": 1794743797.270718,
+    "seen": 1794761413.1165292,
+    "ast_hash": "dc2536caa61f270274f4522b1b76f8a4",
+    "semantic_hash": ""
+  },
+  "src/features/catalog/coverUrl.ts": {
+    "mtime": 1794743765.9367878,
+    "seen": 1794761413.1165292,
+    "ast_hash": "d7304a58062c5ef0cbfc55ab6e73ec84",
+    "semantic_hash": ""
+  },
+  "src/features/catalog/useCatalogParams.test.tsx": {
+    "mtime": 1794744343.0587714,
+    "seen": 1794761413.1165292,
+    "ast_hash": "eff81cad2ead7caedaeb540a6d988f19",
+    "semantic_hash": ""
+  },
+  "src/features/catalog/useCatalogParams.ts": {
+    "mtime": 1794744023.7388184,
+    "seen": 1794761413.1165292,
+    "ast_hash": "7b23baf0d4b7f8513ad653581cef08a6",
+    "semantic_hash": ""
+  },
+  "src/features/catalog/useTypewriter.ts": {
+    "mtime": 1794743972.6176062,
+    "seen": 1794761413.1165292,
+    "ast_hash": "abd1aef5c67a9d7fd8125480bbf22011",
+    "semantic_hash": ""
+  },
+  "src/features/library/LibraryCard.tsx": {
+    "mtime": 1794744158.1739812,
+    "seen": 1794761413.1165292,
+    "ast_hash": "b9e99d99f02edc1173c32a26be562191",
+    "semantic_hash": ""
+  },
+  "src/features/library/LibraryPage.test.tsx": {
+    "mtime": 1794760618.282514,
+    "seen": 1794761413.1165292,
+    "ast_hash": "b3a47a252dcbba5f8cf2099ba4ca0987",
+    "semantic_hash": ""
+  },
+  "src/features/library/LibraryPage.tsx": {
+    "mtime": 1794744192.7600875,
+    "seen": 1794761413.1165292,
+    "ast_hash": "5bd4cf2d050106a76ea143867e2d2c7a",
+    "semantic_hash": ""
+  },
+  "src/shared/i18n/plural.test.ts": {
+    "mtime": 1794743795.3976195,
+    "seen": 1794761413.1165292,
+    "ast_hash": "c5402a17f9de7822c3d6ed4bd0ed92ac",
+    "semantic_hash": ""
+  },
+  "src/shared/i18n/plural.ts": {
+    "mtime": 1794743759.959366,
+    "seen": 1794761413.1165292,
+    "ast_hash": "2ec342f5c56dca249c79ed0feba59fab",
+    "semantic_hash": ""
+  },
+  "src/shared/ui/BookCover/BookCover.test.tsx": {
+    "mtime": 1794743799.2150638,
+    "seen": 1794761413.1165292,
+    "ast_hash": "e187b4d4ed26432abb13196e7dac6a0c",
+    "semantic_hash": ""
+  },
+  "src/shared/ui/BookCover/BookCover.tsx": {
+    "mtime": 1794743793.7833614,
+    "seen": 1794761413.1165292,
+    "ast_hash": "19438bad48c1a33118b23de3cfba7503",
+    "semantic_hash": ""
+  },
+  "src/shared/ui/ErrorNotice/ErrorNotice.tsx": {
+    "mtime": 1794743761.7634008,
+    "seen": 1794761413.1165292,
+    "ast_hash": "35478a7ad12b80959be51d35a30292c1",
     "semantic_hash": ""
   },
   "package-lock.json": {
